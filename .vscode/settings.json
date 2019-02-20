@@ -32,7 +32,7 @@
         "autoHeader": "manualSave"
     },
     "eslint.options": {
-        "configFile": ".eslintrc"
+        "configFile": ".eslintrc.json"
     },
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,

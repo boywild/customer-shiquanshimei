@@ -1,28 +1,76 @@
 {
     "parser": "babel-eslint",
-    "extends": "airbnb",
-    "plugins": ["react", "jsx-a11y", "import"],
-    "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "jsx-a11y/href-no-hash": "off",
-        "react/prop-types": [1, { "ignore": ["children"] }],
-        "react/prefer-stateless-function": 0,
-        "react/forbid-prop-types": [0],
-        "import/extensions": [1, { "js": "never", "json": "never" }],
-        "import/no-extraneous-dependencies": [0]
-    },
-    "settings": {
-        "import/resolver": {
-            "babel-module": {}
-        }
-    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["react"],
     "globals": {
         "document": true,
         "window": true
     },
     "env": {
+        "browser": true,
+        "commonjs": true,
         "es6": true,
-        "node": true,
         "jest": true
+    },
+
+    "parserOptions": {
+        "ecmaVersion": 9,
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+
+    "rules": {
+        "for-direction": "error",
+        "getter-return": "error",
+        "no-debugger": "error",
+        "no-ex-assign": "error",
+        "no-extra-boolean-cast": "error",
+        "no-extra-semi": "error",
+        "no-func-assign": "error",
+        "no-inner-declarations": "error",
+        "no-unsafe-negation": "error",
+        "valid-typeof": "error",
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-console": "error",
+        "no-undef": "off",
+        "no-alert": "error",
+        "no-cond-assign": "error",
+        "no-constant-condition": "error",
+        "no-dupe-keys": "error",
+        "no-dupe-args": "error",
+        "no-duplicate-case": "error",
+        "no-else-return": "error",
+        "no-empty": "error",
+        "no-eq-null": "error",
+        "no-nested-ternary": "error",
+        "no-new": "error",
+        "no-const-assign": "error",
+        "no-redeclare": "error",
+        "no-sequences": "error",
+        "no-unexpected-multiline": "off",
+        "no-unneeded-ternary": "error",
+        "no-unreachable": "error",
+        "no-var": "error",
+        "eqeqeq": "error",
+        "max-depth": [0, 4],
+        "max-params": [0, 4],
+        "prefer-spread": "error",
+        "space-in-parens": "error",
+        "react/prop-types": "error",
+        "react/no-deprecated": "off",
+        "react/display-name": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/prefer-stateless-function": 0,
+        "react/forbid-prop-types": [0]
     }
 }
