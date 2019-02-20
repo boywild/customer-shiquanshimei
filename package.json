@@ -2,7 +2,7 @@
     "name": "react-boilerplate-pro",
     "version": "1.0.0",
     "description": "React Boilerplate for Enterprise Admin System",
-    "main": "src/index.js",
+    "main": "src/app.js",
     "scripts": {
         "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress --colors",
         "mock:server": "cross-env json-server --watch mock/db.json --middlewares middleware/loginMiddleware.js",

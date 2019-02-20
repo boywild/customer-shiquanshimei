@@ -25,7 +25,7 @@ module.exports = {
     target: 'web',
     context: SOURCE_DIR,
     entry: {
-        client: './index.js'
+        client: './app.js'
     },
     output: {
         path: CLIENT_DIR,
