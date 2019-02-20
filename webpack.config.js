@@ -85,8 +85,12 @@ module.exports = {
             }
         }
     },
+    performance: {
+        hints: 'error',
+        maxAssetSize: 512000
+    },
     resolve: {
-        extensions: ['.js', '.jsx', '.json', '.css', '.less', '.json']
+        extensions: ['.js', '.jsx', '.json', '.css', '.less']
     },
     module: {
         rules: [
@@ -185,6 +189,7 @@ module.exports = {
         port: process.env.PORT || 8080,
         host: 'localhost',
         publicPath: '/',
+        compress: true,
         contentBase: SOURCE_DIR,
         historyApiFallback: true
     }
