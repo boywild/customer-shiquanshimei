@@ -20,6 +20,47 @@ const CLIENT_DIR = path.join(OUTPUT_DIR, VERSION);
 const config = buildConfig[BUILD_DOMAIN];
 const localeMessages = require('./src/i18n/locale.json');
 
+const devScss = [
+    {
+        loader: 'style-loader',
+        options: { singleton: true }
+    },
+    'css-loader',
+    {
+        loader: 'postcss-loader',
+        options: {
+            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
+            sourceMap: true
+        }
+    },
+    {
+        loader: 'sass-loader',
+        options: {
+            includePaths: [SOURCE_DIR]
+        }
+    }
+];
+const proScss = [
+    MiniCssExtractPlugin.loader,
+    {
+        loader: 'css-loader',
+        options: { minimize: true }
+    },
+    {
+        loader: 'postcss-loader',
+        options: {
+            plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
+            sourceMap: true
+        }
+    },
+    {
+        loader: 'sass-loader',
+        options: {
+            includePaths: [SOURCE_DIR]
+        }
+    }
+];
+
 module.exports = {
     mode: ENV,
     target: 'web',
@@ -45,7 +86,7 @@ module.exports = {
         }
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.json']
+        extensions: ['.js', '.jsx', '.json', '.css', '.less', '.json']
     },
     module: {
         rules: [
@@ -59,47 +100,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
-                use: IS_PROD
-                    ? [
-                          MiniCssExtractPlugin.loader,
-                          {
-                              loader: 'css-loader',
-                              options: { minimize: true }
-                          },
-                          {
-                              loader: 'postcss-loader',
-                              options: {
-                                  plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
-                                  sourceMap: true
-                              }
-                          },
-                          {
-                              loader: 'sass-loader',
-                              options: {
-                                  includePaths: [SOURCE_DIR]
-                              }
-                          }
-                      ]
-                    : [
-                          {
-                              loader: 'style-loader',
-                              options: { singleton: true }
-                          },
-                          'css-loader',
-                          {
-                              loader: 'postcss-loader',
-                              options: {
-                                  plugins: () => [autoprefixer({ browsers: 'last 5 versions' })],
-                                  sourceMap: true
-                              }
-                          },
-                          {
-                              loader: 'sass-loader',
-                              options: {
-                                  includePaths: [SOURCE_DIR]
-                              }
-                          }
-                      ]
+                use: IS_PROD ? proScss : devScss
             },
             {
                 test: /\.less$/,
@@ -138,18 +139,26 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
-                use: IS_PROD
-                    ? {
-                          loader: 'file-loader',
-                          options: {
-                              name: '[name].[hash:8].[ext]',
-                              outputPath: 'assets/images/'
-                          }
-                      }
-                    : {
-                          loader: 'url-loader'
-                      }
+                test: /\.(woff2?|ttf|eot|otf)(\?.*)?$/i,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[hash:8].[ext]',
+                        outputPath: 'assets/fonts/'
+                    }
+                }
+            },
+            {
+                test: /\.(svg|jpe?g|png|gif)(\?.*)?$/i,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                        fallback: 'file-loader',
+                        name: '[name].[hash:8].[ext]',
+                        outputPath: 'assets/images/'
+                    }
+                }
             }
         ]
     },
