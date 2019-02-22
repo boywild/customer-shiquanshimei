@@ -47,17 +47,6 @@ module.exports = {
         filename: 'assets/script/[name].[hash:8].js',
         libraryTarget: 'umd'
     },
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all'
-                }
-            }
-        }
-    },
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.css', '.less'],
         alias: {
@@ -105,6 +94,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(ENV),
             'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),

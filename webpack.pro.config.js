@@ -18,6 +18,43 @@ module.exports = merge(webpackConfig, {
         hints: 'warning',
         maxAssetSize: 512000
     },
+    optimization: {
+        runtimeChunk: 'single',
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /react|react-dom|react-router-dom|react-router-config|prop-types|classnames/,
+                    chunks: 'initial',
+                    name:'vendors',
+                    enforce: true
+                },
+                redux: {
+                    test: /redux|react-redux|redux-thunk/,
+                    chunks: 'initial',
+                    name:'redux',
+                    enforce: true
+                },
+                jquery: {
+                    test: /jquery/,
+                    chunks: 'initial',
+                    name:'jquery',
+                    enforce: true
+                },
+                antd: {
+                    test: /antd/,
+                    chunks: 'initial',
+                    name:'antd',
+                    enforce: true
+                },
+                utils: {
+                    test: /axios|path-to-regexp|history|js-cookie|lodash|moment|react-loadable/,
+                    chunks: 'initial',
+                    name:'utils',
+                    enforce: true
+                }
+            }
+        }
+    },
     module: {
         rules: [
             {
