@@ -25,15 +25,6 @@ const CLIENT_DIR = path.join(OUTPUT_DIR, VERSION);
 const config = buildConfig[BUILD_DOMAIN];
 const localeMessages = require('./src/i18n/locale.json');
 
-const APP = path.resolve(__dirname, './src/app');
-const ASSETS = path.resolve(__dirname, './src/assets');
-const COMPONENTS = path.resolve(__dirname, './src/components');
-const I18N = path.resolve(__dirname, './src/i18n');
-const LAYOUTS = path.resolve(__dirname, './src/layouts');
-const STYLES = path.resolve(__dirname, './src/styles');
-const UTILS = path.resolve(__dirname, './src/utils');
-const VIEWS = path.resolve(__dirname, './src/views');
-
 module.exports = {
     mode: ENV,
     target: 'web',
@@ -48,17 +39,7 @@ module.exports = {
         libraryTarget: 'umd'
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.json', '.css', '.less'],
-        alias: {
-            app: APP,
-            assets: ASSETS,
-            components: COMPONENTS,
-            i18n: I18N,
-            layouts: LAYOUTS,
-            styles: STYLES,
-            utils: UTILS,
-            views: VIEWS
-        }
+        extensions: ['.js', '.jsx', '.json', '.css', '.less']
     },
     module: {
         rules: [
