@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl-context';
 import { Card, Tag, Button } from 'antd';
 import map from 'lodash/map';
-import appAction from 'app/action';
+import appAction from 'views/app-action';
 import action from './action';
 import './index.scss';
 

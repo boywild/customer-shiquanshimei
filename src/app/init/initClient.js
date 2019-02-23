@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 import isNil from 'lodash/isNil';
-import appAction from '../action';
+import appAction from 'views/app-action';
 
 const initClient = (dispatch) => {
     const isLogin = !isNil(Cookie.get('user'));

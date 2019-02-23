@@ -6,7 +6,7 @@ import { injectIntl } from 'react-intl-context';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 import { Input, Icon, Button } from 'antd';
-import appAction from 'app/action';
+import appAction from 'views/app-action';
 import logo from 'assets/logo.svg';
 import './index.scss';
 

@@ -1,3 +1,10 @@
+/*
+ * @Author: chentian
+ * @Date: 2019-02-23 13:00:50
+ * -----
+ * @Modified By: chentian
+ * @Last Modified: 2019-02-23 13:00:50
+ */
 import Cookie from 'js-cookie';
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
@@ -33,6 +40,7 @@ const loginUser = (username, password) => {
 
     return (dispatch) =>
         action(dispatch).then((callbackAction) => {
+            console.log(callbackAction);
             if (callbackAction.type === 'APP_LOGIN_SUCCESS') {
                 Cookie.set('user', JSON.stringify(callbackAction.payload));
                 return getNotices()(dispatch);

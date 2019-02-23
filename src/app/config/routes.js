@@ -6,7 +6,7 @@ import Unauthorized from 'views/unauthorized';
 
 const authorizedRoutes = [
     {
-        path: '/dashboard/analysis/realtime',
+        path: '/system/setting1',
         exact: true,
         permissions: ['admin', 'user'],
         redirect: '/login',
@@ -14,7 +14,7 @@ const authorizedRoutes = [
         pageTitle: ''
     },
     {
-        path: '/dashboard/analysis/offline',
+        path: '/system/setting2',
         exact: true,
         permissions: ['admin', 'user'],
         redirect: '/login',
@@ -22,7 +22,7 @@ const authorizedRoutes = [
         pageTitle: ''
     },
     {
-        path: '/dashboard/workplace',
+        path: '/system/promotion',
         exact: true,
         permissions: ['admin'],
         redirect: '/login',
@@ -30,7 +30,32 @@ const authorizedRoutes = [
         pageTitle: ''
     },
     {
-        path: '/outlets',
+        path: '/system/qr',
+        exact: true,
+        permissions: ['admin'],
+        redirect: '/login',
+        component: WorkInProgress,
+        pageTitle: ''
+    },
+    {
+        path: '/system/pageinfo',
+        exact: true,
+        permissions: ['admin'],
+        redirect: '/login',
+        component: WorkInProgress,
+        pageTitle: ''
+    },
+    {
+        path: '/system/share',
+        exact: true,
+        permissions: ['admin'],
+        redirect: '/login',
+        component: WorkInProgress,
+        pageTitle: ''
+    },
+
+    {
+        path: '/member',
         exact: true,
         permissions: ['admin', 'user'],
         component: Outlets,
@@ -39,7 +64,7 @@ const authorizedRoutes = [
         breadcrumb: ['/outlets']
     },
     {
-        path: '/outlets/:id',
+        path: 'assessor',
         exact: true,
         permissions: ['admin', 'user'],
         component: OutletDetail,
@@ -48,7 +73,49 @@ const authorizedRoutes = [
         breadcrumb: ['/outlets', '/outlets/:id']
     },
     {
-        path: '/exception/403',
+        path: '/message/msglist',
+        exact: true,
+        permissions: ['god'],
+        component: WorkInProgress,
+        unauthorized: Unauthorized
+    },
+    {
+        path: '/message/msgadd',
+        exact: true,
+        permissions: ['god'],
+        component: WorkInProgress,
+        unauthorized: Unauthorized
+    },
+    {
+        path: '/log/loglist',
+        exact: true,
+        permissions: ['god'],
+        component: WorkInProgress,
+        unauthorized: Unauthorized
+    },
+    {
+        path: '/usercenter/modifyinfo',
+        exact: true,
+        permissions: ['god'],
+        component: WorkInProgress,
+        unauthorized: Unauthorized
+    },
+    {
+        path: '/usercenter/modifyinfo',
+        exact: true,
+        permissions: ['god'],
+        component: WorkInProgress,
+        unauthorized: Unauthorized
+    },
+    {
+        path: '/usercenter/memberinfo',
+        exact: true,
+        permissions: ['god'],
+        component: WorkInProgress,
+        unauthorized: Unauthorized
+    },
+    {
+        path: '/usercenter/userinfo',
         exact: true,
         permissions: ['god'],
         component: WorkInProgress,

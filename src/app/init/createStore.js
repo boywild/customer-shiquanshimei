@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import reduxThunk from 'redux-thunk';
-import reducers from './reducers';
+import reducers from 'views/index-reducers';
 
 function createAppStore(history, preloadedState = {}) {
 		// enhancers

@@ -1,3 +1,10 @@
+/*
+ * @Author: chentian
+ * @Date: 2019-02-23 13:07:10
+ * -----
+ * @Modified By: chentian
+ * @Last Modified: 2019-02-23 13:07:10
+ */
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
