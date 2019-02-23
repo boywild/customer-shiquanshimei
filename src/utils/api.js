@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { buildConfig } from 'app/config/buildConfig';
+import httpUrl from 'app/config/httpConfig';
 
 const defaultHeader = {
     Accept: 'application/json',
@@ -8,9 +9,10 @@ const defaultHeader = {
 
 const instance = axios.create({
     baseURL: buildConfig.apiDomain,
+    // baseURL: httpUrl,
     timeout: 5000,
     headers: defaultHeader,
-    withCredentials: true
+    withCredentials: false
 });
 
 const returnJson = (response) => response.data;
@@ -34,13 +36,31 @@ const api = () => {
                 ...options
             };
         },
-        get: (url, query) =>
+        get: (url, query, options) =>
             opt.instance
                 .get(url, {
-                    params: query
+                    params: query,
+                    ...options
                 })
-                .then(standardResponse),
-        post: (url, data) => opt.instance.post(url, data).then(standardResponse),
+                .then(standardResponse)
+                .catch(function(error) {
+                    console.log(error);
+                }),
+        post: (url, data, options) =>
+            opt.instance
+                .post(url, data)
+                .then(standardResponse)
+                .catch(function(error) {
+                    console.log(error);
+                }),
+        all: (url) => {
+            if (typeof url !== 'array') return new Error('Type error:url must be Array');
+            opt.instance.all([...url]).then(
+                opt.instance.spread(function(acct, perms) {
+                    // 两个请求现在都执行完成
+                })
+            );
+        },
         delete: (url) => opt.instance.delete(url).then(standardResponse)
     };
 };
