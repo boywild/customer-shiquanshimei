@@ -16,7 +16,7 @@ const SOURCE_DIR = path.resolve(__dirname, 'src');
 module.exports = merge(webpackConfig, {
     performance: {
         hints: 'warning',
-        maxAssetSize: 512000
+        maxAssetSize: 1048576
     },
     optimization: {
         runtimeChunk: 'single',
@@ -25,31 +25,31 @@ module.exports = merge(webpackConfig, {
                 vendors: {
                     test: /react|react-dom|react-router-dom|react-router-config|prop-types|classnames/,
                     chunks: 'initial',
-                    name:'vendors',
+                    name: 'vendors',
                     enforce: true
                 },
                 redux: {
                     test: /redux|react-redux|redux-thunk/,
                     chunks: 'initial',
-                    name:'redux',
+                    name: 'redux',
                     enforce: true
                 },
                 jquery: {
                     test: /jquery/,
                     chunks: 'initial',
-                    name:'jquery',
+                    name: 'jquery',
                     enforce: true
                 },
                 antd: {
                     test: /antd/,
                     chunks: 'initial',
-                    name:'antd',
+                    name: 'antd',
                     enforce: true
                 },
                 utils: {
                     test: /axios|path-to-regexp|history|js-cookie|lodash|moment|react-loadable/,
                     chunks: 'initial',
-                    name:'utils',
+                    name: 'utils',
                     enforce: true
                 }
             }
