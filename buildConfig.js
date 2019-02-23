@@ -8,7 +8,7 @@ module.exports = {
         apiDomain: ''
     },
     localhost: {
-        locale: 'en-us',
+        locale: 'zh-cn',
         apiDomain: 'http://localhost:3000'
     }
 };
