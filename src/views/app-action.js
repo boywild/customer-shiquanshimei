@@ -40,7 +40,7 @@ const loginUser = (username, password) => {
 
     return (dispatch) =>
         action(dispatch).then((callbackAction) => {
-            console.log(callbackAction);
+            // console.log(callbackAction);
             if (callbackAction.type === 'APP_LOGIN_SUCCESS') {
                 Cookie.set('user', JSON.stringify(callbackAction.payload));
                 return getNotices()(dispatch);

@@ -41,17 +41,12 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.css', '.less']
     },
-    eslint: {
-        configFile: './.eslintrc.json'
-    },
     module: {
         rules: [
             {
                 test: /\.(jsx|js)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: ['babel-loader','eslint-loader']
-                }
+                use: ['babel-loader', 'eslint-loader']
             },
             {
                 test: /\.(woff2?|ttf|eot|otf)(\?.*)?$/i,

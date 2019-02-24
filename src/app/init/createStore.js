@@ -4,27 +4,27 @@ import reduxThunk from 'redux-thunk';
 import reducers from 'views/index-reducers';
 
 function createAppStore(history, preloadedState = {}) {
-		// enhancers
-		let composeEnhancers = compose;
+    // enhancers
+    let composeEnhancers = compose;
 
-		if (typeof window !== 'undefined') {
-				// eslint-disable-next-line no-underscore-dangle
-				composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-		}
+    if (typeof window !== 'undefined') {
+        // eslint-disable-next-line no-underscore-dangle
+        composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    }
 
-		// middlewares
-		const middlewares = [routerMiddleware(history), reduxThunk];
+    // middlewares
+    const middlewares = [routerMiddleware(history), reduxThunk];
 
-		const store = createStore(
-				connectRouter(history)(combineReducers(reducers)),
-				preloadedState,
-				composeEnhancers(applyMiddleware(...middlewares))
-		);
+    const store = createStore(
+        connectRouter(history)(combineReducers(reducers)),
+        preloadedState,
+        composeEnhancers(applyMiddleware(...middlewares))
+    );
 
-		return {
-				store,
-				history
-		};
+    return {
+        store,
+        history
+    };
 }
 
 export default createAppStore;

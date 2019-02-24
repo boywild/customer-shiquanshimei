@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { buildConfig } from 'app/config/buildConfig';
-import httpUrl from 'app/config/httpConfig';
+// import httpUrl from 'app/config/httpConfig';
 
 const defaultHeader = {
     Accept: 'application/json',
