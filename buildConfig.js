@@ -9,6 +9,6 @@ module.exports = {
     },
     localhost: {
         locale: 'zh-cn',
-        apiDomain: 'http://localhost:3000'
+        apiDomain: 'http://fmvhcf.natappfree.cc/pp'
     }
 };
