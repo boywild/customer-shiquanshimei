@@ -8,7 +8,7 @@ import BasicLayout from 'layouts/BasicLayout';
 import NormalLayout from 'layouts/NormalLayout';
 import NotFound from 'views/notFound';
 import { messages, buildConfig } from '../config/buildConfig';
-import { authorizedRoutes, normalRoutes } from '../config/routes';
+import { authorizedRoutes, normalRoutes } from '../config/routerConfig';
 
 const { locale } = buildConfig;
 

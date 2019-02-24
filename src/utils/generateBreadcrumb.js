@@ -1,7 +1,7 @@
 import head from 'lodash/head';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
-import { combineRoutes } from 'app/config/routes';
+import { combineRoutes } from 'app/config/routerConfig';
 
 const generateBreadcrumb = (breadcrumb) =>
     [

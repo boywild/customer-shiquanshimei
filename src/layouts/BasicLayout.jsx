@@ -13,7 +13,7 @@ import { Avatar, Dropdown, Menu, Icon, Breadcrumb, Popover } from 'antd';
 import Sider from 'react-sider';
 import 'react-sider/lib/index.css';
 import menuData from 'app/config/menuConfig';
-import { combineRoutes } from 'app/config/routes';
+import { combineRoutes } from 'app/config/routerConfig';
 import appAction from 'views/app-action';
 import getFirstChar from 'utils/getFirstChar';
 import generateBreadcrumb from 'utils/generateBreadcrumb';
