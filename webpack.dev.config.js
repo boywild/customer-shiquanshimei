@@ -90,6 +90,12 @@ module.exports = merge(webpackConfig, {
         publicPath: '/',
         compress: true,
         contentBase: SOURCE_DIR,
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+            '/pp/*': {
+                target: 'http://fmvhcf.natappfree.cc/cc',
+                changeOrigin: true
+            }
+        }
     }
 });
