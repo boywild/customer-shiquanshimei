@@ -24,19 +24,19 @@ const deleteNotice = (id) => {
 };
 
 const login = (username, password) =>
-    createAsyncAction(
-        'APP_LOGIN',
-        () =>
-            // api.post('/login', {
-            //     username,
-            //     password
-            // })
-            new Promise({
+    createAsyncAction('APP_LOGIN', () => {
+        // api.post('/login', {
+        //     username,
+        //     password
+        // })
+        return new Promise(function(resolve) {
+            resolve({
                 id: 1,
                 name: 'Admin',
                 authorities: 'admin'
-            })
-    );
+            });
+        });
+    });
 
 const resetLoginErrorMsg = () => ({
     type: 'APP_RESET_LOGIN_ERROR_MSG'
