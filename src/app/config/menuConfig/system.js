@@ -9,7 +9,7 @@
 const systemMenu = [
     {
         name: 'siderMenu_system',
-        icon: 'dashboard',
+        icon: 'setting',
         path: 'system',
         children: [
             {

@@ -15,61 +15,61 @@ const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
     outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
+    getLog: PropTypes.func.isRequired
 };
 
 class loginLIst extends Component {
     componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
+        const { getLog } = this.props;
+        getLog();
     }
 
     render() {
         const columns = [
             {
                 title: '序号',
-                dataIndex: 'number',
-                key: 'number',
+                dataIndex: 'helplogId',
+                key: 'helplogId',
                 render: (text) => <a href="javascript:;">{text}</a>
             },
             {
                 title: '发生在',
-                dataIndex: 'msg',
-                key: 'msg'
+                dataIndex: 'helplogDesc',
+                key: 'helplogDesc'
             },
             {
                 title: '事件',
-                dataIndex: 'happen',
-                key: 'happen'
+                dataIndex: 'content',
+                key: 'content'
             },
             {
                 title: '时间',
-                dataIndex: 'time',
-                key: 'time'
+                dataIndex: 'createTime',
+                key: 'createTime'
             }
         ];
 
         const data = [
             {
                 key: '1',
-                number: 'John Brown',
-                msg: 32,
-                happen: 'New York No. 1 Lake Park',
-                time: '2019:22:22 10:22:22'
+                helplogId: 'John Brown',
+                helplogDesc: 32,
+                content: 'New York No. 1 Lake Park',
+                createTime: '2019:22:22 10:22:22'
             },
             {
                 key: '2',
-                number: 'John Brown',
-                msg: 32,
-                happen: 'New York No. 1 Lake Park',
-                time: '2019:22:22 10:22:22'
+                helplogId: 'John Brown',
+                helplogDesc: 32,
+                content: 'New York No. 1 Lake Park',
+                createTime: '2019:22:22 10:22:22'
             },
             {
                 key: '3',
-                number: 'John Brown',
-                msg: 32,
-                happen: 'New York No. 1 Lake Park',
-                time: '2019:22:22 10:22:22'
+                helplogId: 'John Brown',
+                helplogDesc: 32,
+                content: 'New York No. 1 Lake Park',
+                createTime: '2019:22:22 10:22:22'
             }
         ];
         return (
@@ -101,7 +101,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets
+    getLog: action.getLog
 };
 loginLIst.propTypes = propTypes;
 export default connect(

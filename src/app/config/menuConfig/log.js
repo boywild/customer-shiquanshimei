@@ -8,7 +8,7 @@
 const logMenu = [
     {
         name: 'siderMenu_log',
-        icon: 'dashboard',
+        icon: 'snippets',
         path: 'log',
         children: [
             {

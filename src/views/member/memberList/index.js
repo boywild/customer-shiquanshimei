@@ -15,31 +15,31 @@ const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
     outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
+    getMemberList: PropTypes.func.isRequired
 };
 
 class MemberCard extends Component {
     componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
+        const { getMemberList } = this.props;
+        getMemberList();
     }
 
     render() {
         const columns = [
             {
                 title: '序号',
-                dataIndex: 'number',
-                key: 'number'
+                dataIndex: 'userId',
+                key: 'userId'
             },
             {
                 title: '等级',
-                dataIndex: 'level',
-                key: 'level'
+                dataIndex: 'grade',
+                key: 'grade'
             },
             {
                 title: '姓名',
-                dataIndex: 'name',
-                key: 'name'
+                dataIndex: 'userName',
+                key: 'userName'
             },
             {
                 title: '电话',
@@ -48,18 +48,18 @@ class MemberCard extends Component {
             },
             {
                 title: '微信',
-                dataIndex: 'wechat',
-                key: 'wechat'
+                dataIndex: 'weixin',
+                key: 'weixin'
             },
             {
                 title: '密码',
-                dataIndex: 'passowrd',
-                key: 'passowrd'
+                dataIndex: 'password',
+                key: 'password'
             },
             {
                 title: '加入时间',
-                dataIndex: 'jointime',
-                key: 'handle'
+                dataIndex: 'createTime',
+                key: 'createTime'
             },
             {
                 title: '操作',
@@ -78,36 +78,33 @@ class MemberCard extends Component {
         const data = [
             {
                 key: '1',
-                number: '1',
-                level: '2',
-                name: '陈湉',
+                userId: '1',
+                grade: '2',
+                userName: '陈湉',
                 phone: '18827032021',
-                wechat: '23234334',
-                passowrd: 'wewerwe',
-                jointime: '2019-18-20',
-                handle: '删除'
+                weixin: '23234334',
+                password: 'wewerwe',
+                createTime: '2019-18-20'
             },
             {
                 key: '2',
-                number: '1',
-                level: '2',
-                name: '陈湉',
+                userId: '1',
+                grade: '2',
+                userName: '陈湉',
                 phone: '18827032021',
-                wechat: '23234334',
-                passowrd: 'wewerwe',
-                jointime: '2019-18-20',
-                handle: '删除'
+                weixin: '23234334',
+                password: 'wewerwe',
+                createTime: '2019-18-20'
             },
             {
                 key: '3',
-                number: '1',
-                level: '2',
-                name: '陈湉',
+                userId: '1',
+                grade: '2',
+                userName: '陈湉',
                 phone: '18827032021',
-                wechat: '23234334',
-                passowrd: 'wewerwe',
-                jointime: '2019-18-20',
-                handle: '删除'
+                weixin: '23234334',
+                password: 'wewerwe',
+                createTime: '2019-18-20'
             }
         ];
         return (
@@ -115,6 +112,7 @@ class MemberCard extends Component {
                 <Card title="会员管理" bordered={false}>
                     <Tabs defaultActiveKey="1">
                         <TabPane tab="筛选" key="1">
+                            <Checkbox className='mgb20'>显示默认群主</Checkbox>,
                             <div className="mgb20 serch-box">
                                 <span className="serch-lable">关键字</span>
                                 <Search
@@ -123,7 +121,6 @@ class MemberCard extends Component {
                                     enterButton="搜索"
                                     onSearch={(value) => console.log(value)}
                                 />
-                                <Checkbox>显示默认群主</Checkbox>,
                             </div>
                         </TabPane>
                     </Tabs>
@@ -140,7 +137,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets
+    getMemberList: action.getMemberList
 };
 MemberCard.propTypes = propTypes;
 export default connect(

@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, Select } from 'antd';
+import { Card, Select, Table } from 'antd';
 import action from './action';
 import './index.scss';
 
@@ -23,76 +23,54 @@ class MemberList extends Component {
         const { getOutlets } = this.props;
         getOutlets();
     }
-
+    test = () => {
+        let arr = [];
+        for (let i = 1; i <= 13; i++) {
+            arr.push(<Option value={`${i}级会员`}>{i}级会员</Option>);
+        }
+        return arr;
+    };
     render() {
+        const columns = [
+            {
+                title: '姓名',
+                dataIndex: 'name'
+            },
+            {
+                title: '年龄',
+                dataIndex: 'age'
+            },
+            {
+                title: '地址',
+                dataIndex: 'address'
+            }
+        ];
+        const data = [
+            {
+                key: '1',
+                name: 'John Brown',
+                age: 32,
+                address: 'New York No. 1 Lake Park'
+            },
+            {
+                key: '2',
+                name: 'Jim Green',
+                age: 42,
+                address: 'London No. 1 Lake Park'
+            },
+            {
+                key: '3',
+                name: 'Joe Black',
+                age: 32,
+                address: 'Sidney No. 1 Lake Park'
+            }
+        ];
+
         return (
             <div>
                 <Card title="会员卡显示" bordered={false} className="member-level">
-                    <Select size='large' placeholder="一级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="二级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="三级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="四级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="五级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="六级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="七级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="八级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="九级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="十级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="十一级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="十二级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
-                    <Select size='large' placeholder="十三级会员">
-                        <Option value="一级会员">一级会员</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
-                    </Select>
+                    <Select placeholder="选择会员级别">{this.test()}</Select>
+                    <Table columns={columns} dataSource={data} size="middle" />
                 </Card>
             </div>
         );

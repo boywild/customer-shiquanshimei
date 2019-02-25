@@ -128,8 +128,10 @@ class MemberinfoForm extends Component {
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                            <Button type="primary">保存修改</Button>
-                            <Button>修改资料</Button>
+                            <Button className="mgr10" type="primary">
+                                保存修改
+                            </Button>
+                            <Button className="mgr10">修改资料</Button>
                         </Form.Item>
                     </Form>
                 </Card>

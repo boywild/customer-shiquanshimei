@@ -40,21 +40,21 @@ class System1Form extends Component {
                 <Card title="基础设置" bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Item {...formItemLayout} label="规则名称">
-                            {getFieldDecorator('share-title', {
+                            {getFieldDecorator('rule', {
                                 rules: [
                                     {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="关键词">
-                            {getFieldDecorator('share-desc', {
+                            {getFieldDecorator('key-word', {
                                 rules: [
                                     {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Select mode="tags" style={{ width: '100%' }} placeholder="Tags Mode" />)}
@@ -75,7 +75,7 @@ class System1Form extends Component {
                                         rules: [
                                             {
                                                 required: true,
-                                                message: 'Please input your E-mail!'
+                                                message: '不能为空'
                                             }
                                         ]
                                     })(<Input />)}
@@ -85,7 +85,7 @@ class System1Form extends Component {
                                         rules: [
                                             {
                                                 required: true,
-                                                message: 'Please input your E-mail!'
+                                                message: '不能为空'
                                             }
                                         ]
                                     })(
@@ -101,7 +101,7 @@ class System1Form extends Component {
                                         rules: [
                                             {
                                                 required: true,
-                                                message: 'Please input your E-mail!'
+                                                message: '不能为空'
                                             }
                                         ]
                                     })(<Input />)}

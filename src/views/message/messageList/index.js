@@ -28,48 +28,47 @@ class MessageList extends Component {
         const columns = [
             {
                 title: '序号',
-                dataIndex: 'number',
-                key: 'number',
-                render: (text) => <a href="javascript:;">{text}</a>
+                dataIndex: 'announcementId',
+                key: 'announcementId'
             },
             {
                 title: '标题',
-                dataIndex: 'msg',
-                key: 'msg'
+                dataIndex: 'announcementTitle',
+                key: 'announcementTitle'
             },
             {
                 title: '阅读量',
-                dataIndex: 'happen',
-                key: 'happen'
+                dataIndex: 'status',
+                key: 'status'
             },
             {
                 title: '公告详情',
-                dataIndex: 'time',
-                key: 'time'
+                dataIndex: 'content',
+                key: 'content'
             }
         ];
 
         const data = [
             {
                 key: '1',
-                number: 'John Brown',
-                msg: 32,
-                happen: 'New York No. 1 Lake Park',
-                time: '2019:22:22 10:22:22'
+                announcementId: 'John Brown',
+                announcementTitle: 32,
+                status: 'New York No. 1 Lake Park',
+                content: '2019:22:22 10:22:22'
             },
             {
                 key: '2',
-                number: 'John Brown',
-                msg: 32,
-                happen: 'New York No. 1 Lake Park',
-                time: '2019:22:22 10:22:22'
+                announcementId: 'John Brown',
+                announcementTitle: 32,
+                status: 'New York No. 1 Lake Park',
+                content: '2019:22:22 10:22:22'
             },
             {
                 key: '3',
-                number: 'John Brown',
-                msg: 32,
-                happen: 'New York No. 1 Lake Park',
-                time: '2019:22:22 10:22:22'
+                announcementId: 'John Brown',
+                announcementTitle: 32,
+                status: 'New York No. 1 Lake Park',
+                content: '2019:22:22 10:22:22'
             }
         ];
         return (

@@ -8,7 +8,7 @@
 const messageMenu = [
     {
         name: 'siderMenu_message',
-        icon: 'dashboard',
+        icon: 'sound',
         path: 'message',
         children: [
             {

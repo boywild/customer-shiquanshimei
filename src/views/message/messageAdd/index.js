@@ -7,6 +7,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Card, Button, Form, Input } from 'antd';
 import action from './action';
@@ -22,6 +23,19 @@ class loginLIstForm extends Component {
         const { getOutlets } = this.props;
         getOutlets();
     }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { saveMsg, form } = this.props;
+        form.validateFields((err, values) => {
+            if (err) return false;
+            // 保存消息
+            saveMsg(values);
+            this.handleReset();
+        });
+    };
+    handleReset = () => {
+        this.props.form.resetFields();
+    };
 
     render() {
         const { getFieldDecorator } = this.props.form;
@@ -38,48 +52,51 @@ class loginLIstForm extends Component {
         return (
             <div>
                 <Card title="添加公告" bordered={false}>
-                    <Button className="mgb20" type="primary">
-                        返回列表
-                    </Button>
+                    <Link to="/message/msglist">
+                        <Button className="mgb20" type="primary">
+                            返回列表
+                        </Button>
+                    </Link>
+
                     <Card title="添加公告" type="inner">
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Item {...formItemLayout} label="标题">
-                                {getFieldDecorator('title', {
+                                {getFieldDecorator('announcementTitle', {
                                     rules: [
                                         {
                                             required: true,
-                                            message: 'Please input your E-mail!'
+                                            message: '不能为空'
                                         }
                                     ]
                                 })(<Input />)}
                             </Form.Item>
                             <Form.Item {...formItemLayout} label="阅读量">
-                                {getFieldDecorator('read', {
+                                {getFieldDecorator('status', {
                                     rules: [
                                         {
                                             required: true,
-                                            message: 'Please input your E-mail!'
+                                            message: '不能为空'
                                         }
                                     ]
                                 })(<Input />)}
                             </Form.Item>
                             <Form.Item {...formItemLayout} label="公告详情">
-                                {getFieldDecorator('wechat', {
+                                {getFieldDecorator('content', {
                                     rules: [
                                         {
-                                            type: 'email',
-                                            message: 'The input is not valid E-mail!'
-                                        },
-                                        {
                                             required: true,
-                                            message: 'Please input your E-mail!'
+                                            message: '不能为空'
                                         }
                                     ]
                                 })(<TextArea rows={5} />)}
                             </Form.Item>
                             <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                                <Button type="primary">提交</Button>
-                                <Button>清空</Button>
+                                <Button className="mgr10" type="primary" htmlType="submit">
+                                    提交
+                                </Button>
+                                <Button className="mgl10" onClick={this.handleReset}>
+                                    清空
+                                </Button>
                             </Form.Item>
                         </Form>
                     </Card>
@@ -94,7 +111,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets
+    getOutlets: action.getOutlets,
+    saveMsg: action.saveMsg
 };
 const loginLIst = Form.create({ name: 'register' })(loginLIstForm);
 loginLIst.propTypes = propTypes;

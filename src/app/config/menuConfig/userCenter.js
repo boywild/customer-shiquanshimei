@@ -8,7 +8,7 @@
 const userCenterMenu = [
     {
         name: 'siderMenu_user_center',
-        icon: 'dashboard',
+        icon: 'user',
         path: 'usercenter',
         children: [
             {

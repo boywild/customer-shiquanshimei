@@ -39,57 +39,41 @@ class ModifyinfoForm extends Component {
                 <Card title="修改个人资料" bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Item {...formItemLayout} label="登陆手机号">
-                            {getFieldDecorator('mobile', {
+                            {getFieldDecorator('telephone', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="微信号">
-                            {getFieldDecorator('wechat', {
+                            {getFieldDecorator('wxId', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="昵称">
-                            {getFieldDecorator('nick', {
+                            {getFieldDecorator('adminName', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="登陆密码">
-                            {getFieldDecorator('login-password', {
+                            {getFieldDecorator('password', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
@@ -98,12 +82,8 @@ class ModifyinfoForm extends Component {
                             {getFieldDecorator('confirm-password', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
@@ -112,19 +92,15 @@ class ModifyinfoForm extends Component {
                             {getFieldDecorator('old-password', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                            <Button type="primary">保存修改</Button>
-                            <Button>取消</Button>
+                            <Button className='mgr10' type="primary">保存修改</Button>
+                            <Button className='mgl10'>取消</Button>
                         </Form.Item>
                     </Form>
                 </Card>

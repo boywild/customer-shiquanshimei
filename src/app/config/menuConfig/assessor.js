@@ -8,7 +8,7 @@
 const assessorMenu = [
     {
         name: 'siderMenu_assessor',
-        icon: 'table',
+        icon: 'tool',
         path: 'assessor',
         // children: [
         //     {

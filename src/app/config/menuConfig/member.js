@@ -8,7 +8,7 @@
 const memberMenu = [
     {
         name: 'siderMenu_member',
-        icon: 'shop',
+        icon: 'heart',
         path: 'member',
         children: [
             {
