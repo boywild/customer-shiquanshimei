@@ -10,6 +10,7 @@ module.exports = {
     localhost: {
         locale: 'zh-cn',
         // apiDomain: 'http://anxj6m.natappfree.cc/pp'
-        apiDomain: 'http://localhost:3000'
+        apiDomain: 'http://u3f5qj.natappfree.cc/pp'
+        // apiDomain: 'http://localhost:3000'
     }
 };
