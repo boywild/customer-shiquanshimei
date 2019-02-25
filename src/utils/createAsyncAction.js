@@ -15,7 +15,7 @@ function createAsyncAction(name, callback, meta = {}) {
                     const action = {
                         meta,
                         type: `${name}_SUCCESS`,
-                        payload: value
+                        payload: value.data
                     };
 
                     dispatch(action);

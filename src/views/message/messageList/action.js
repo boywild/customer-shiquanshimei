@@ -1,8 +1,8 @@
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
 
-const getOutlets = () => createAsyncAction('OUTLETS_GET', () => api.get('/outlets'));
+const getMsg = (param) => createAsyncAction('GET_MSG', () => api.post('/announce/query', param));
 
 export default {
-    getOutlets
+    getMsg
 };

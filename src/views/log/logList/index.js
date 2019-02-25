@@ -15,13 +15,18 @@ const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
     outlets: PropTypes.array.isRequired,
-    getLog: PropTypes.func.isRequired
+    getLog: PropTypes.func,
+    logoDb: PropTypes.array
 };
 
 class loginLIst extends Component {
     componentDidMount() {
         const { getLog } = this.props;
-        getLog();
+        getLog({
+            content: '',
+            pageNum: 1,
+            pageSize: 10
+        });
     }
 
     render() {
@@ -48,30 +53,6 @@ class loginLIst extends Component {
                 key: 'createTime'
             }
         ];
-
-        const data = [
-            {
-                key: '1',
-                helplogId: 'John Brown',
-                helplogDesc: 32,
-                content: 'New York No. 1 Lake Park',
-                createTime: '2019:22:22 10:22:22'
-            },
-            {
-                key: '2',
-                helplogId: 'John Brown',
-                helplogDesc: 32,
-                content: 'New York No. 1 Lake Park',
-                createTime: '2019:22:22 10:22:22'
-            },
-            {
-                key: '3',
-                helplogId: 'John Brown',
-                helplogDesc: 32,
-                content: 'New York No. 1 Lake Park',
-                createTime: '2019:22:22 10:22:22'
-            }
-        ];
         return (
             <div>
                 <Card title="互助日志" bordered={false}>
@@ -89,7 +70,7 @@ class loginLIst extends Component {
                         </TabPane>
                     </Tabs>
                     ,
-                    <Table columns={columns} dataSource={data} />
+                    <Table columns={columns} dataSource={this.props.logoDb} />
                 </Card>
             </div>
         );
@@ -97,7 +78,7 @@ class loginLIst extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
+    logoDb: state.logList.logoDb
 });
 
 const mapDispatchToProps = {

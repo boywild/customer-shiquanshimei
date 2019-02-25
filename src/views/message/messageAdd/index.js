@@ -15,14 +15,10 @@ const { TextArea } = Input;
 
 const propTypes = {
     outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
+    saveMsg: PropTypes.func
 };
 
 class loginLIstForm extends Component {
-    componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
-    }
     handleSubmit = (e) => {
         e.preventDefault();
         const { saveMsg, form } = this.props;
@@ -70,16 +66,6 @@ class loginLIstForm extends Component {
                                     ]
                                 })(<Input />)}
                             </Form.Item>
-                            <Form.Item {...formItemLayout} label="阅读量">
-                                {getFieldDecorator('status', {
-                                    rules: [
-                                        {
-                                            required: true,
-                                            message: '不能为空'
-                                        }
-                                    ]
-                                })(<Input />)}
-                            </Form.Item>
                             <Form.Item {...formItemLayout} label="公告详情">
                                 {getFieldDecorator('content', {
                                     rules: [
@@ -111,7 +97,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets,
     saveMsg: action.saveMsg
 };
 const loginLIst = Form.create({ name: 'register' })(loginLIstForm);

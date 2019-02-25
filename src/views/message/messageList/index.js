@@ -15,13 +15,17 @@ const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
     outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
+    getMsg: PropTypes.func.isRequired
 };
 
 class MessageList extends Component {
     componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
+        const { getMsg } = this.props;
+        getMsg({
+            content: '',
+            pageNum: 1,
+            pageSize: 10
+        });
     }
 
     render() {
@@ -88,7 +92,7 @@ class MessageList extends Component {
                         </TabPane>
                     </Tabs>
                     ,
-                    <Table columns={columns} dataSource={data} />
+                    <Table columns={columns} dataSource={this.props.msgList} />
                 </Card>
             </div>
         );
@@ -96,11 +100,11 @@ class MessageList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
+    msgList: state.message.msgList
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets
+    getMsg: action.getMsg
 };
 MessageList.propTypes = propTypes;
 export default connect(

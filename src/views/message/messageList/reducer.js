@@ -6,9 +6,9 @@ const defaultState = () => ({
 
 const getSuccess = (state, action) => ({
     ...state,
-    outlets: action.payload
+    msgList: action.payload
 });
 
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_MSG_SUCCESS: getSuccess
 });

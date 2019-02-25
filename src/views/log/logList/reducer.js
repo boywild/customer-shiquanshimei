@@ -1,14 +1,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    outlets: []
+    logoDb: []
 });
 
 const getSuccess = (state, action) => ({
     ...state,
-    outlets: action.payload
+    logoDb: action.payload
 });
 
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_LOG_SUCCESS: getSuccess
 });
