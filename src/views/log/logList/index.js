@@ -34,8 +34,7 @@ class loginLIst extends Component {
             {
                 title: '序号',
                 dataIndex: 'helplogId',
-                key: 'helplogId',
-                render: (text) => <a href="javascript:;">{text}</a>
+                key: 'helplogId'
             },
             {
                 title: '发生在',
@@ -69,7 +68,6 @@ class loginLIst extends Component {
                             </div>
                         </TabPane>
                     </Tabs>
-                    ,
                     <Table columns={columns} dataSource={this.props.logoDb} />
                 </Card>
             </div>

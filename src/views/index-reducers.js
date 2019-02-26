@@ -11,10 +11,10 @@ import modifyinfo from './userCenter/modifyinfo/reducer';
 import memberinfo from './userCenter/memberinfo/reducer';
 import userinfo from './userCenter/userinfo/reducer';
 
-
 import message from './message/messageList/reducer';
 import messageadd from './message/messageAdd/reducer';
 import logList from './log/logList/reducer';
+import memberListPage from './member/memberList/reducer';
 
 import app from './app-reducer';
 
@@ -27,5 +27,6 @@ export default {
     userinfo,
     message,
     messageadd,
-    logList
+    logList,
+    memberListPage
 };

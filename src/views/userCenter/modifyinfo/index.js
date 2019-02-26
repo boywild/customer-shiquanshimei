@@ -69,7 +69,7 @@ class ModifyinfoForm extends Component {
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="登陆密码">
-                            {getFieldDecorator('password', {
+                            {getFieldDecorator('newPasswrod', {
                                 rules: [
                                     {
                                         required: true,
@@ -79,7 +79,7 @@ class ModifyinfoForm extends Component {
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="确认密码">
-                            {getFieldDecorator('confirm-password', {
+                            {getFieldDecorator('confirm_newPasswrod', {
                                 rules: [
                                     {
                                         required: true,
@@ -89,7 +89,7 @@ class ModifyinfoForm extends Component {
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label="原密码">
-                            {getFieldDecorator('old-password', {
+                            {getFieldDecorator('password', {
                                 rules: [
                                     {
                                         required: true,
@@ -99,8 +99,10 @@ class ModifyinfoForm extends Component {
                             })(<Input />)}
                         </Form.Item>
                         <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                            <Button className='mgr10' type="primary">保存修改</Button>
-                            <Button className='mgl10'>取消</Button>
+                            <Button className="mgr10" type="primary">
+                                保存修改
+                            </Button>
+                            <Button className="mgl10">取消</Button>
                         </Form.Item>
                     </Form>
                 </Card>

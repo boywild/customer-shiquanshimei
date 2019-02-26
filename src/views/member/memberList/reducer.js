@@ -1,14 +1,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    outlets: []
+    memberList: []
 });
 
-const getSuccess = (state, action) => ({
+const getMemberSuccess = (state, action) => ({
     ...state,
-    outlets: action.payload
+    memberList: action.payload
 });
 
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_MEMBER_LIST_SUCCESS: getMemberSuccess
 });

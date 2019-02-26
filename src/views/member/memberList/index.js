@@ -14,16 +14,29 @@ import action from './action';
 const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
-    outlets: PropTypes.array.isRequired,
-    getMemberList: PropTypes.func.isRequired
+    getMemberList: PropTypes.func
 };
 
 class MemberCard extends Component {
     componentDidMount() {
         const { getMemberList } = this.props;
-        getMemberList();
+        getMemberList({
+            pageNum: 1,
+            pageSize: 10
+        });
     }
-
+    handleMember = (flag, record) => {
+        this.props.deleteMember(
+            {
+                deleteFlag: flag,
+                userId: record.userId
+            },
+            {
+                pageNum: 1,
+                pageSize: 10
+            }
+        );
+    };
     render() {
         const columns = [
             {
@@ -65,46 +78,17 @@ class MemberCard extends Component {
                 title: '操作',
                 dataIndex: 'handle',
                 key: 'handle',
-                render: () => (
+                render: (text, record) => (
                     <span>
-                        <a href="javascript:;">锁定</a>
+                        <a href="javascript:;" onClick={() => this.handleMember(1, record)}>
+                            锁定
+                        </a>
                         <Divider type="vertical" />
-                        <a href="javascript:;">删除</a>
+                        <a href="javascript:;" onClick={() => this.handleMember(2, record)}>
+                            删除
+                        </a>
                     </span>
                 )
-            }
-        ];
-
-        const data = [
-            {
-                key: '1',
-                userId: '1',
-                grade: '2',
-                userName: '陈湉',
-                phone: '18827032021',
-                weixin: '23234334',
-                password: 'wewerwe',
-                createTime: '2019-18-20'
-            },
-            {
-                key: '2',
-                userId: '1',
-                grade: '2',
-                userName: '陈湉',
-                phone: '18827032021',
-                weixin: '23234334',
-                password: 'wewerwe',
-                createTime: '2019-18-20'
-            },
-            {
-                key: '3',
-                userId: '1',
-                grade: '2',
-                userName: '陈湉',
-                phone: '18827032021',
-                weixin: '23234334',
-                password: 'wewerwe',
-                createTime: '2019-18-20'
             }
         ];
         return (
@@ -112,7 +96,7 @@ class MemberCard extends Component {
                 <Card title="会员管理" bordered={false}>
                     <Tabs defaultActiveKey="1">
                         <TabPane tab="筛选" key="1">
-                            <Checkbox className='mgb20'>显示默认群主</Checkbox>,
+                            <Checkbox className="mgb20">显示默认群主</Checkbox>
                             <div className="mgb20 serch-box">
                                 <span className="serch-lable">关键字</span>
                                 <Search
@@ -125,7 +109,7 @@ class MemberCard extends Component {
                         </TabPane>
                     </Tabs>
 
-                    <Table columns={columns} dataSource={data} />
+                    <Table columns={columns} dataSource={this.props.memberList} />
                 </Card>
             </div>
         );
@@ -133,11 +117,12 @@ class MemberCard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
+    memberList: state.memberListPage.memberList
 });
 
 const mapDispatchToProps = {
-    getMemberList: action.getMemberList
+    getMemberList: action.getMemberList,
+    deleteMember: action.deleteMember
 };
 MemberCard.propTypes = propTypes;
 export default connect(
