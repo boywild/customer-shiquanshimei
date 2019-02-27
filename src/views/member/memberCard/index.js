@@ -15,20 +15,31 @@ import './index.scss';
 const Option = Select.Option;
 const propTypes = {
     outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
+    getMemberList: PropTypes.func
 };
 
 class MemberList extends Component {
     componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
+        const { getMemberList } = this.props;
+        getMemberList();
     }
     test = () => {
         let arr = [];
         for (let i = 1; i <= 13; i++) {
-            arr.push(<Option value={`${i}级会员`}>{i}级会员</Option>);
+            arr.push(
+                <Option key={i} value={i}>
+                    {i}级会员
+                </Option>
+            );
         }
         return arr;
+    };
+    handleChange = (val) => {
+        const { getMemberList } = this.props;
+        getMemberList({
+            grade: val
+        });
+        console.log(val);
     };
     render() {
         const columns = [
@@ -69,7 +80,9 @@ class MemberList extends Component {
         return (
             <div>
                 <Card title="会员卡显示" bordered={false} className="member-level">
-                    <Select placeholder="选择会员级别">{this.test()}</Select>
+                    <Select placeholder="选择会员级别" onChange={this.handleChange}>
+                        {this.test()}
+                    </Select>
                     <Table columns={columns} dataSource={data} size="middle" />
                 </Card>
             </div>
@@ -82,7 +95,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets
+    getMemberList: action.getMemberList
 };
 MemberList.propTypes = propTypes;
 export default connect(

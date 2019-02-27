@@ -7,7 +7,7 @@
  */
 
 // const httpUrl = 'http://whkayak.f3322.net:19003/market-cms-api/adm/';
-const httpUrl = 'http://enamft.natappfree.cc/pp';
+const httpUrl = 'http://f927u3.natappfree.cc/pp';
 // const httpUrl = 'http://localhost:3000';
 
 
