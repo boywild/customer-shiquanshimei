@@ -8,8 +8,18 @@
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
 
-const getOutlets = () => createAsyncAction('OUTLETS_GET', () => api.get('/outlets'));
+const getBasicSet = (param = {}) =>
+    createAsyncAction('GET_BASE_SET', () => api.post('/basicExtend/getBasicExtend', param));
+const saveBasicSet = (param = {}) =>
+    createAsyncAction('SAVE_BASE_SET', () => api.post('/basicExtend/setBasicExtend', param));
+const getBasicGroup = (param = {}) =>
+    createAsyncAction('GET_BASE_GROUP', () => api.post('/basicExtend/getDefaultSuperior', param));
+const saveBasicGroup = (param = {}) =>
+    createAsyncAction('SAVE_BASE_GROUP', () => api.post('/basicExtend/setDefaultSuperior', param));
 
 export default {
-    getOutlets
+    getBasicSet,
+    saveBasicSet,
+    getBasicGroup,
+    saveBasicGroup
 };

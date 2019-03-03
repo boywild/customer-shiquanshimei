@@ -8,8 +8,10 @@
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
 
-const getOutlets = () => createAsyncAction('OUTLETS_GET', () => api.get('/outlets'));
+const getSysSetting1 = () => createAsyncAction('GET_SYS_SETTING1', () => api.get('/basic/getBasic'));
+const saveSysSetting1 = (param) => createAsyncAction('SAVE_SYS_SETTING1', () => api.post('/basic/setBasic', param));
 
 export default {
-    getOutlets
+    getSysSetting1,
+    saveSysSetting1
 };

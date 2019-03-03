@@ -5,7 +5,7 @@
  * @Modified By: chentian
  * @Last Modified: 2019-02-23 15:16:13
  */
-import WorkInProgress from 'views/workInProgress';
+// import WorkInProgress from 'views/workInProgress';
 import Promotion from 'views/system/promotion';
 import Share from 'views/system/share';
 import System1 from 'views/system/systemSetting1';

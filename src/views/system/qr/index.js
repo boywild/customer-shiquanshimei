@@ -8,22 +8,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Card, Form, Input, Button, Checkbox, Select } from 'antd';
+import { Card, Form, Button, Select } from 'antd';
 import action from './action';
+import QrStyle from './QrStyle';
+import AvatarStyle from './AvatarStyle';
+import NameStyle from './NameStyle';
 
 import './index.scss';
 
 const propTypes = {
-    outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
+    qrCode: PropTypes.object,
+    getQrDb: PropTypes.func
 };
 
 class QrForm extends Component {
     componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
+        const { getQrDb } = this.props;
+        getQrDb();
     }
-
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.qrCode !== this.props.qrCode) {
+            const { form, qrCode } = nextProps;
+            form.setFieldsValue({
+                ...qrCode,
+                qrCodeKeywords: qrCode.qrCodeKeywords.split(','),
+                qr_style: { ...qrCode },
+                avatar_style: { ...qrCode, isAvaer: qrCode.isAvaer === '1' },
+                name_style: { ...qrCode, isName: qrCode.isName === '1' }
+            });
+        }
+    }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { qrCode, form, saveQrDb } = this.props;
+        form.validateFields((err, values) => {
+            if (err) return false;
+            saveQrDb({
+                ...qrCode,
+                ...values.qr_style,
+                ...values.avatar_style,
+                ...values.name_style,
+                qrCodeKeywords: values.qrCodeKeywords.join(','),
+                isAvaer: values.avatar_style.isAvaer ? '1' : '0',
+                isName: values.name_style.isName ? '1' : '0'
+            });
+        });
+    };
     render() {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
@@ -36,79 +66,57 @@ class QrForm extends Component {
                 sm: { span: 18 }
             }
         };
+
         return (
-            <div className="qr-setting">
-                <Card title="二维码配置" bordered={false}>
+            <div className='qr-setting'>
+                <Card title='二维码配置' bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Item {...formItemLayout} label="二维码调整">
-                            {getFieldDecorator('qr', {
+                        <Form.Item {...formItemLayout} label='二维码调整'>
+                            {getFieldDecorator('qr_style', {
                                 rules: [
                                     {
                                         required: true,
                                         message: '不能为空'
                                     }
                                 ]
-                            })(
-                                <div>
-                                    <Input addonBefore="左边距离" addonAfter="px" />
-                                    <Input addonBefore="上边距离" addonAfter="px" />
-                                    <Input addonBefore="宽度" addonAfter="px" />
-                                    <Input addonBefore="高度" addonAfter="px" />
-                                </div>
-                            )}
+                            })(<QrStyle />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="头像">
-                            {getFieldDecorator('avatar', {
+                        <Form.Item {...formItemLayout} label='头像'>
+                            {getFieldDecorator('avatar_style', {
                                 rules: [
                                     {
                                         required: true,
                                         message: '不能为空'
                                     }
                                 ]
-                            })(
-                                <div>
-                                    <Checkbox>显示头像</Checkbox>
-                                    <Input addonBefore="左边距离" addonAfter="px" />
-                                    <Input addonBefore="上边距离" addonAfter="px" />
-                                    <Input addonBefore="宽度" addonAfter="px" />
-                                    <Input addonBefore="高度" addonAfter="px" />
-                                </div>
-                            )}
+                            })(<AvatarStyle />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="姓名">
-                            {getFieldDecorator('name', {
+                        <Form.Item {...formItemLayout} label='姓名'>
+                            {getFieldDecorator('name_style', {
                                 rules: [
                                     {
                                         required: true,
                                         message: '不能为空'
                                     }
                                 ]
-                            })(
-                                <div>
-                                    <Checkbox>姓名</Checkbox>
-                                    <Input addonBefore="左边距离" addonAfter="px" />
-                                    <Input addonBefore="上边距离" addonAfter="px" />
-                                    <Input addonBefore="宽度" addonAfter="px" />
-                                    <Input addonBefore="高度" addonAfter="px" />
-                                </div>
-                            )}
+                            })(<NameStyle />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="二维码关键词">
-                            {getFieldDecorator('keyword', {
+                        <Form.Item {...formItemLayout} label='二维码关键词'>
+                            {getFieldDecorator('qrCodeKeywords', {
                                 rules: [
                                     {
                                         required: true,
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Select mode="tags" style={{ width: '100%' }} placeholder="Tags Mode" />)}
+                            })(<Select mode='tags' style={{ width: '100%' }} placeholder='输入并回车新建新标签' />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="预览效果" />
+                        <Form.Item {...formItemLayout} label='预览效果' />
                         <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                            <Button className="mgr10" type="primary">
+                            <Button className='mgr10' type='primary' htmlType='submit'>
                                 提交
                             </Button>
-                            <Button className="mgl10">取消</Button>
+                            <Button className='mgl10'>取消</Button>
                         </Form.Item>
                     </Form>
                 </Card>
@@ -118,14 +126,20 @@ class QrForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
+    qrCode: state.qrPage.qrCode,
+    qrCodeLeft: state.qrPage.qrCodeLeft,
+    qrCodeTop: state.qrPage.qrCodeTop,
+    qrCodeWeight: state.qrPage.qrCodeWeight,
+    qrCodeHeight: state.qrPage.qrCodeHeight
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets
+    getQrDb: action.getQrDb,
+    saveQrDb: action.saveQrDb,
+    changeQrDb: action.changeQrDb
 };
 
-const Qr = Form.create({ name: 'aa' })(QrForm);
+const Qr = Form.create({ name: 'qr' })(QrForm);
 Qr.propTypes = propTypes;
 export default connect(
     mapStateToProps,

@@ -8,14 +8,45 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    outlets: []
+    qrCode: {},
+    qrCodeLeft: '',
+    qrCodeTop: '',
+    qrCodeWeight: '',
+    qrCodeHeight: ''
 });
 
-const getSuccess = (state, action) => ({
+const getQrSuccess = (state, action) => ({
     ...state,
-    outlets: action.payload
+    qrCode: action.payload
 });
+const chagneQrDb = (state, action) => {
+    switch (action.inputType) {
+        case 'qr_left':
+            return {
+                ...state,
+                qrCodeLeft: action.payload
+            };
 
+        case 'qr_top':
+            return {
+                ...state,
+                qrCodeTop: action.payload
+            };
+
+        case 'qr_width':
+            return {
+                ...state,
+                qrCodeWeight: action.payload
+            };
+
+        case 'qr_height':
+            return {
+                ...state,
+                qrCodeHeight: action.payload
+            };
+    }
+};
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_QR_DB_SUCCESS: getQrSuccess,
+    CHANGE_QR_DB: chagneQrDb
 });

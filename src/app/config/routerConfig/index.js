@@ -8,17 +8,18 @@
 import systemRouter from './system';
 import memberRouter from './member';
 import assessorRouter from './assessor';
+import productRouter from './product';
 import messageRouter from './message';
 import logRouter from './log';
 import userCenterRouter from './userCenter';
 
 import Login from 'views/login';
 
-
 const authorizedRoutes = [
     ...systemRouter,
     ...memberRouter,
     ...assessorRouter,
+    ...productRouter,
     ...messageRouter,
     ...logRouter,
     ...userCenterRouter

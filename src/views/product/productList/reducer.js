@@ -1,21 +1,21 @@
 /*
  * @Author: chentian
- * @Date: 2019-02-25 11:53:18
+ * @Date: 2019-03-03 15:56:21
  * -----
  * @Modified By: chentian
- * @Last Modified: 2019-02-25 11:53:18
+ * @Last Modified: 2019-03-03 15:56:21
  */
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    pageInfo: []
+    productList: []
 });
 
-const getPageInfoSuccess = (state, action) => ({
+const getProSuccess = (state, action) => ({
     ...state,
-    pageInfo: action.payload
+    productList: action.payload
 });
 
 export default createReducer(defaultState, {
-    GET_PAGE_INFO_SUCCESS: getPageInfoSuccess
+    GET_PRODUCT_SUCCESS: getProSuccess
 });

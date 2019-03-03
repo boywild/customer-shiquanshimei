@@ -14,7 +14,6 @@ import action from './action';
 const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
-    outlets: PropTypes.array.isRequired,
     getMsg: PropTypes.func.isRequired
 };
 

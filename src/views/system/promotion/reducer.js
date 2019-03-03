@@ -8,14 +8,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    outlets: []
+    updateSetting: {}
 });
 
-const getSuccess = (state, action) => ({
+const getUpdateSuccess = (state, action) => ({
     ...state,
-    outlets: action.payload
+    updateSetting: action.payload
 });
 
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_UPDATE_SETTING_SUCCESS: getUpdateSuccess
 });

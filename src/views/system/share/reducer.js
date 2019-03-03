@@ -1,14 +1,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    outlets: []
+    shareOpt: {}
 });
 
-const getSuccess = (state, action) => ({
+const getShareOptSuccess = (state, action) => ({
     ...state,
-    outlets: action.payload
+    shareOpt: action.payload
 });
 
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_SHARE_OPT_SUCCESS: getShareOptSuccess
 });

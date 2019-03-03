@@ -8,8 +8,16 @@
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
 
-const getOutlets = () => createAsyncAction('OUTLETS_GET', () => api.get('/outlets'));
+const getPageInfo = () => createAsyncAction('GET_PAGE_INFO', () => api.get('/pageShow/getPageShow'));
+const savePageInfo = (param = {}) =>
+    createAsyncAction('SAVE_PAGE_INFO', () => api.post('/pageShow/setPageShow', param));
+
+const getBanner = (param = {}) => createAsyncAction('GET_BANNER', () => api.post('/bannerp/getBannerp', param));
+const saveBanner = (param = {}) => createAsyncAction('SAVE_BANNER', () => api.post('/bannerp/setBannerp', param));
 
 export default {
-    getOutlets
+    getPageInfo,
+    savePageInfo,
+    getBanner,
+    saveBanner
 };

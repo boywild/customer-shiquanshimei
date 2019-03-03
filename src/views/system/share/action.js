@@ -8,8 +8,10 @@
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
 
-const getOutlets = () => createAsyncAction('OUTLETS_GET', () => api.get('/outlets'));
+const getShareOpt = (param = {}) => createAsyncAction('GET_SHARE_OPT', () => api.post('/sharep/getSharep', param));
+const saveShareOpt = (param = {}) => createAsyncAction('SAVE_SHARE_OPT', () => api.post('/sharep/setSharep', param));
 
 export default {
-    getOutlets
+    getShareOpt,
+    saveShareOpt
 };

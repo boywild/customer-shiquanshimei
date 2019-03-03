@@ -15,14 +15,10 @@ import './index.scss';
 const Option = Select.Option;
 const propTypes = {
     outlets: PropTypes.array.isRequired,
-    getMemberList: PropTypes.func
+    getMemberCard: PropTypes.func
 };
 
 class MemberList extends Component {
-    componentDidMount() {
-        const { getMemberList } = this.props;
-        getMemberList();
-    }
     test = () => {
         let arr = [];
         for (let i = 1; i <= 13; i++) {
@@ -35,45 +31,26 @@ class MemberList extends Component {
         return arr;
     };
     handleChange = (val) => {
-        const { getMemberList } = this.props;
-        getMemberList({
-            grade: val
+        const { getMemberCard } = this.props;
+        getMemberCard({
+            grade: val,
+            pageNum: 1,
+            pageSize: 10
         });
-        console.log(val);
     };
     render() {
         const columns = [
             {
                 title: '姓名',
-                dataIndex: 'name'
+                dataIndex: 'userName'
             },
             {
-                title: '年龄',
-                dataIndex: 'age'
+                title: '微信',
+                dataIndex: 'weixin'
             },
             {
                 title: '地址',
                 dataIndex: 'address'
-            }
-        ];
-        const data = [
-            {
-                key: '1',
-                name: 'John Brown',
-                age: 32,
-                address: 'New York No. 1 Lake Park'
-            },
-            {
-                key: '2',
-                name: 'Jim Green',
-                age: 42,
-                address: 'London No. 1 Lake Park'
-            },
-            {
-                key: '3',
-                name: 'Joe Black',
-                age: 32,
-                address: 'Sidney No. 1 Lake Park'
             }
         ];
 
@@ -83,7 +60,7 @@ class MemberList extends Component {
                     <Select placeholder="选择会员级别" onChange={this.handleChange}>
                         {this.test()}
                     </Select>
-                    <Table columns={columns} dataSource={data} size="middle" />
+                    <Table columns={columns} dataSource={this.props.memberCard} size="middle" />
                 </Card>
             </div>
         );
@@ -91,11 +68,11 @@ class MemberList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
+    memberCard: state.memberCardPage.memberCard
 });
 
 const mapDispatchToProps = {
-    getMemberList: action.getMemberList
+    getMemberCard: action.getMemberCard
 };
 MemberList.propTypes = propTypes;
 export default connect(

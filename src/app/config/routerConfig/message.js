@@ -5,7 +5,7 @@
  * @Modified By: chentian
  * @Last Modified: 2019-02-23 15:16:57
  */
-import WorkInProgress from 'views/workInProgress';
+// import WorkInProgress from 'views/workInProgress';
 // import Unauthorized from 'views/unauthorized';
 import MessageList from 'views/message/messageList';
 import MessageAdd from 'views/message/messageAdd';

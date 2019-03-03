@@ -15,6 +15,7 @@
     "prettier.tabWidth": 4,
     "prettier.singleQuote": true,
     "prettier.jsxBracketSameLine": true,
+    "prettier.semi": true,
     "prettier.arrowParens": "always",
     "psi-header.templates": [
         {
@@ -31,9 +32,10 @@
     "psi-header.changes-tracking": {
         "autoHeader": "manualSave"
     },
+    "eslint.workingDirectories": ["./"],
     "eslint.options": {
         "configFile": ".eslintrc.json"
     },
     "workbench.editor.enablePreview": false,
-    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false
 }

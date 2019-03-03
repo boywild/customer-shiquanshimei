@@ -4,11 +4,11 @@ const defaultState = () => ({
     outlets: []
 });
 
-const getSuccess = (state, action) => ({
+const getSetting1 = (state, action) => ({
     ...state,
-    outlets: action.payload
+    sysSetting1: action.payload
 });
 
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_SYS_SETTING1_SUCCESS: getSetting1
 });

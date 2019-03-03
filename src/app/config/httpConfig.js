@@ -6,9 +6,12 @@
  * @Last Modified: 2019-02-23 10:50:48
  */
 
-// const httpUrl = 'http://whkayak.f3322.net:19003/market-cms-api/adm/';
-const httpUrl = 'http://f927u3.natappfree.cc/pp';
-// const httpUrl = 'http://localhost:3000';
+// const apiUrl = 'http://whkayak.f3322.net:19003/market-cms-api/adm/';
+const apiUrl = 'http://47.244.141.145/pp';
+// const apiUrl = 'http://localhost:3000';
+const imgUrl = 'http://47.244.141.145/pp/pic/upload';
 
-
-export default httpUrl;
+export default {
+    apiUrl,
+    imgUrl
+};

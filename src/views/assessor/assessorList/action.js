@@ -1,8 +1,10 @@
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
 
-const getOutlets = () => createAsyncAction('OUTLETS_GET', () => api.get('/outlets'));
+const getAssessorList = (param = {}) => createAsyncAction('GET_ASS_LIST', () => api.post('/user/checkList', param));
+const getCheckedList = () => createAsyncAction('GET_CHECKED_LIST', () => api.get('/user/check'));
 
 export default {
-    getOutlets
+    getAssessorList,
+    getCheckedList
 };

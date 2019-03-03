@@ -8,14 +8,20 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    outlets: []
+    baseSetting: {},
+    baseGroupSetting: {}
 });
 
-const getSuccess = (state, action) => ({
+const getBaseSuccess = (state, action) => ({
     ...state,
-    outlets: action.payload
+    baseSetting: action.payload
+});
+const geGroupSuccess = (state, action) => ({
+    ...state,
+    baseGroupSetting: action.payload
 });
 
 export default createReducer(defaultState, {
-    OUTLETS_GET_SUCCESS: getSuccess
+    GET_BASE_SET_SUCCESS: getBaseSuccess,
+    GET_BASE_GROUP_SUCCESS: geGroupSuccess
 });

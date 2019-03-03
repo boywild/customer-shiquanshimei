@@ -9,19 +9,44 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Form, Input, Button, Upload, Icon } from 'antd';
+import httpConfig from 'app/config/httpConfig';
+
 import action from './action';
 
 const propTypes = {
-    outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
+    getShareOpt: PropTypes.func
 };
 
 class ShareForm extends Component {
     componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
+        const { getShareOpt } = this.props;
+        getShareOpt();
     }
-
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.shareOpt !== this.props.shareOpt) {
+            const { shareOpt } = nextProps;
+            this.props.form.setFieldsValue({ ...shareOpt });
+        }
+    }
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { form, saveShareOpt, shareOpt } = this.props;
+        form.validateFields((err, values) => {
+            if (err) return false;
+            console.log(values);
+            saveShareOpt({
+                ...shareOpt,
+                ...values,
+                sharePicUrl: values.sharePicUrl[0].response.data
+            });
+        });
+    };
+    normFile = (e) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e && e.fileList;
+    };
     render() {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
@@ -36,50 +61,50 @@ class ShareForm extends Component {
         };
         return (
             <div>
-                <Card title="分享配置" bordered={false}>
+                <Card title='分享配置' bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Item {...formItemLayout} label="分享标题" extra="输入分享标题，如：xxxxx">
-                            {getFieldDecorator('share-title', {
+                        <Form.Item {...formItemLayout} label='分享标题' extra='输入分享标题，如：xxxxx'>
+                            {getFieldDecorator('shareTitle', {
                                 rules: [
                                     {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="分享描述" extra="输入分享标题，如：xxxxx">
-                            {getFieldDecorator('share-desc', {
+                        <Form.Item {...formItemLayout} label='分享描述' extra='输入分享标题，如：xxxxx'>
+                            {getFieldDecorator('shareDec', {
                                 rules: [
                                     {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="分享图片">
-                            <div className="dropbox">
-                                {getFieldDecorator('dragger', {
+                        <Form.Item {...formItemLayout} label='分享图片'>
+                            <div className='dropbox'>
+                                {getFieldDecorator('sharePicUrl', {
                                     valuePropName: 'fileList',
                                     getValueFromEvent: this.normFile
                                 })(
-                                    <Upload.Dragger name="files" action="/upload.do">
-                                        <p className="ant-upload-drag-icon">
-                                            <Icon type="inbox" />
+                                    <Upload.Dragger name='file' action={httpConfig.imgUrl} listType='picture'>
+                                        <p className='ant-upload-drag-icon'>
+                                            <Icon type='inbox' />
                                         </p>
-                                        <p className="ant-upload-text">点击或者拖拽上传图片</p>
-                                        <p className="ant-upload-hint">支持多张上传</p>
+                                        <p className='ant-upload-text'>点击或者拖拽上传图片</p>
+                                        <p className='ant-upload-hint'>支持多张上传</p>
                                     </Upload.Dragger>
                                 )}
                             </div>
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                            <Button className="mgr10" type="primary">
+                            <Button className='mgr10' type='primary' htmlType='submit'>
                                 提交
                             </Button>
-                            <Button className="mgl10">取消</Button>
+                            <Button className='mgl10'>取消</Button>
                         </Form.Item>
                     </Form>
                 </Card>
@@ -89,11 +114,12 @@ class ShareForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
+    shareOpt: state.sharePage.shareOpt
 });
 
 const mapDispatchToProps = {
-    getOutlets: action.getOutlets
+    getShareOpt: action.getShareOpt,
+    saveShareOpt: action.saveShareOpt
 };
 
 const Share = Form.create({ name: 'aa' })(ShareForm);

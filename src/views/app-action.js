@@ -31,9 +31,11 @@ const login = (username, password) =>
         // })
         return new Promise(function(resolve) {
             resolve({
-                id: 1,
-                name: 'Admin',
-                authorities: 'admin'
+                data: {
+                    id: 1,
+                    name: 'Admin',
+                    authorities: 'admin'
+                }
             });
         });
     });
