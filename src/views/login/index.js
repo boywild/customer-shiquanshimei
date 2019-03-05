@@ -38,7 +38,7 @@ class Login extends Component {
     componentDidUpdate() {
         const { isLogin, history } = this.props;
         if (isLogin) {
-            history.push('/');
+            history.push('/system/setting1');
         }
     }
 
@@ -72,7 +72,7 @@ class Login extends Component {
         return (
             <div className={`${prefixCls}-loginPanel`}>
                 <div className={`${prefixCls}-appInfo`}>
-                    <img className={`${prefixCls}-appLogo`} src={logo} alt="logo" />
+                    <img className={`${prefixCls}-appLogo`} src={logo} alt='logo' />
                     <span className={`${prefixCls}-appName`}>{intl.formatMessage({ id: 'appName' })}</span>
                 </div>
                 <div className={`${prefixCls}-appDesc`}>{intl.formatMessage({ id: 'login_appDesc' })}</div>
@@ -80,8 +80,8 @@ class Login extends Component {
                     className={`${prefixCls}-loginInput`}
                     style={{ height: 40, marginBottom: 24 }}
                     placeholder={intl.formatMessage({ id: 'login_usernameInput_placeholder' })}
-                    type="text"
-                    prefix={<Icon type="user" style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+                    type='text'
+                    prefix={<Icon type='user' style={{ color: 'rgba(0, 0, 0, .25)' }} />}
                     value={username}
                     onChange={(e) => this.onInputChange(e, 'username')}
                     onPressEnter={this.handleLogin}
@@ -89,13 +89,13 @@ class Login extends Component {
                 <Input
                     className={`${prefixCls}-loginInput`}
                     placeholder={intl.formatMessage({ id: 'login_passwordInput_placeholder' })}
-                    type="password"
-                    prefix={<Icon type="lock" style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+                    type='password'
+                    prefix={<Icon type='lock' style={{ color: 'rgba(0, 0, 0, .25)' }} />}
                     value={password}
                     onChange={(e) => this.onInputChange(e, 'password')}
                     onPressEnter={this.handleLogin}
                 />
-                <Button className={`${prefixCls}-loginBtn`} type="primary" onClick={this.handleLogin}>
+                <Button className={`${prefixCls}-loginBtn`} type='primary' onClick={this.handleLogin}>
                     {intl.formatMessage({ id: 'login_login_btn' })}
                 </Button>
                 <div>{this.renderErrorMsg()}</div>
@@ -114,7 +114,7 @@ class Login extends Component {
                         [`${prefixCls}-intlItem-active`]: intl.locale === 'en-us'
                     })}
                     onClick={() => this.updateLocale('en-us')}
-                    role="presentation">
+                    role='presentation'>
                     English
                 </span>
                 <span className={`${prefixCls}-intlSwitchSeparator`}>|</span>
@@ -124,7 +124,7 @@ class Login extends Component {
                         [`${prefixCls}-intlItem-active`]: intl.locale === 'zh-cn'
                     })}
                     onClick={() => this.updateLocale('zh-cn')}
-                    role="presentation">
+                    role='presentation'>
                     中文
                 </span>
             </div>

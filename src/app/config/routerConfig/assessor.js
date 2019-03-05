@@ -16,7 +16,7 @@ const assessorRouter = [
         permissions: ['admin', 'user'],
         component: AssessorList,
         unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_outletDetail',
+        pageTitle: 'pageTitle_assessor',
         breadcrumb: ['/assessor']
     }
 ];

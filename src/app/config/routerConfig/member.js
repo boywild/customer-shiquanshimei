@@ -13,11 +13,8 @@ const memberRouter = [
     {
         path: '/member',
         exact: true,
-        permissions: ['admin', 'user'],
-        component: Outlets,
-        unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_outlets',
-        breadcrumb: ['/member']
+        redirect: '/member/membercard',
+        pageTitle: 'pageTitle_member'
     },
     {
         path: '/member/membercard',
@@ -25,8 +22,8 @@ const memberRouter = [
         permissions: ['admin', 'user'],
         component: MemberCard,
         // unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_outlets',
-        breadcrumb: ['/member/membercard']
+        pageTitle: 'pageTitle_member_membercard',
+        breadcrumb: ['/member', '/member/membercard']
     },
     {
         path: '/member/memberlist',
@@ -34,8 +31,8 @@ const memberRouter = [
         permissions: ['admin', 'user'],
         component: MemberList,
         // unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_outlets',
-        breadcrumb: ['/member/memberlist']
+        pageTitle: 'pageTitle_member_memberlist',
+        breadcrumb: ['/member', '/member/memberlist']
     }
 ];
 

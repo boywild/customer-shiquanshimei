@@ -13,13 +13,19 @@ import Userinfo from 'views/userCenter/userinfo';
 
 const userCenterRouter = [
     {
+        path: '/usercenter',
+        exact: true,
+        redirect: '/usercenter/modifyinfo',
+        pageTitle: 'pageTitle_usercenter'
+    },
+    {
         path: '/usercenter/modifyinfo',
         exact: true,
         // permissions: ['god'],
         component: Modifyinfo,
         // unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_outlets',
-        breadcrumb: ['/usercenter/modifyinfo']
+        pageTitle: 'pageTitle_usercenter_modifyinfo',
+        breadcrumb: ['/usercenter', '/usercenter/modifyinfo']
     },
     {
         path: '/usercenter/memberinfo',
@@ -27,8 +33,8 @@ const userCenterRouter = [
         // permissions: ['god'],
         component: Memberinfo,
         // unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_outlets',
-        breadcrumb: ['/usercenter/memberinfo']
+        pageTitle: 'pageTitle_usercenter_memberinfo',
+        breadcrumb: ['/usercenter', '/usercenter/memberinfo']
     },
     {
         path: '/usercenter/userinfo',
@@ -36,8 +42,8 @@ const userCenterRouter = [
         // permissions: ['god'],
         component: Userinfo,
         // unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_outlets',
-        breadcrumb: ['/usercenter/userinfo']
+        pageTitle: 'pageTitle_usercenter_userinfo',
+        breadcrumb: ['/usercenter', '/usercenter/userinfo']
     }
 ];
 

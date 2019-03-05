@@ -15,7 +15,19 @@ function createAsyncAction(name, callback, meta = {}) {
                     const action = {
                         meta,
                         type: `${name}_SUCCESS`,
-                        payload: value.data
+                        payload: (() => {
+                            let result = null;
+                            if (name === 'APP_LOGIN') {
+                                const data = value.admin ? value.admin : value.user;
+                                result = {
+                                    ...data,
+                                    authorities: value.admin ? 'admin' : 'user'
+                                };
+                            } else {
+                                result = value.data;
+                            }
+                            return result;
+                        })()
                     };
 
                     dispatch(action);

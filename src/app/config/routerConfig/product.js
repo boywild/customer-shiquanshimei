@@ -7,16 +7,22 @@
  */
 import Unauthorized from 'views/unauthorized';
 import ProductList from 'views/product/productList';
-
+// import Outlets from 'views/outlets';
 const assessorRouter = [
+    {
+        path: '/product',
+        exact: true,
+        redirect: '/product/productlist',
+        pageTitle: 'pageTitle_product'
+    },
     {
         path: '/product/productlist',
         exact: true,
         permissions: ['admin', 'user'],
         component: ProductList,
         unauthorized: Unauthorized,
-        pageTitle: 'pageTitle_productList',
-        breadcrumb: ['/product/productlist']
+        pageTitle: 'pageTitle_product_productList',
+        breadcrumb: ['/product', '/product/productlist']
     }
 ];
 

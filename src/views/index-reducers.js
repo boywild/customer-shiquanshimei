@@ -9,7 +9,7 @@ import outlets from './outlets/reducer';
 import outletDetail from './outletDetail/reducer';
 import modifyinfo from './userCenter/modifyinfo/reducer';
 import memberinfo from './userCenter/memberinfo/reducer';
-import userinfo from './userCenter/userinfo/reducer';
+// import userinfo from './userCenter/userinfo/reducer';
 
 import message from './message/messageList/reducer';
 import messageadd from './message/messageAdd/reducer';
@@ -34,7 +34,6 @@ export default {
     outletDetail,
     modifyinfo,
     memberinfo,
-    userinfo,
     message,
     messageadd,
     logList,

@@ -1,8 +1,8 @@
 import api from 'utils/api';
 import createAsyncAction from 'utils/createAsyncAction';
 
-const getOutlets = () => createAsyncAction('OUTLETS_GET', () => api.get('/outlets'));
+const saveUserInfo = (param = {}) => createAsyncAction('SAVE_USER_INFO', () => api.post('/admin/save', param));
 
 export default {
-    getOutlets
+    saveUserInfo
 };

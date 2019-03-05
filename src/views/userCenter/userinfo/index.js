@@ -6,24 +6,17 @@
  * @Last Modified: 2019-02-24 13:57:02
  */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
 import { Card, Form, Input } from 'antd';
-
-import action from './action';
-
-const propTypes = {
-    outlets: PropTypes.array.isRequired,
-    getOutlets: PropTypes.func.isRequired
-};
+import Cookie from 'js-cookie';
 
 class UserinfoForm extends Component {
+    static propTypes = {};
     componentDidMount() {
-        const { getOutlets } = this.props;
-        getOutlets();
-    }
+        this.userInfo = JSON.parse(Cookie.get('user'));
 
+        this.props.form.setFieldsValue({ ...this.userInfo });
+    }
+    userInfo = {};
     render() {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
@@ -38,60 +31,44 @@ class UserinfoForm extends Component {
         };
         return (
             <div>
-                <Card title="我的资料" bordered={false}>
+                <Card title='我的资料' bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Item {...formItemLayout} label="我的昵称">
-                            {getFieldDecorator('nick', {
+                        <Form.Item {...formItemLayout} label='我的昵称'>
+                            {getFieldDecorator('adminName', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="我的微信">
-                            {getFieldDecorator('wechat', {
+                        <Form.Item {...formItemLayout} label='我的微信'>
+                            {getFieldDecorator('wxId', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="我的手机">
-                            {getFieldDecorator('mobile', {
+                        <Form.Item {...formItemLayout} label='我的手机'>
+                            {getFieldDecorator('telephone', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label="我的级别">
+                        <Form.Item {...formItemLayout} label='我的级别'>
                             {getFieldDecorator('level', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: 'The input is not valid E-mail!'
-                                    },
-                                    {
                                         required: true,
-                                        message: 'Please input your E-mail!'
+                                        message: '不能为空'
                                     }
                                 ]
                             })(<Input />)}
@@ -103,17 +80,5 @@ class UserinfoForm extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
-});
-
-const mapDispatchToProps = {
-    getOutlets: action.getOutlets
-};
-
 const Userinfo = Form.create({ name: 'info' })(UserinfoForm);
-Userinfo.propTypes = propTypes;
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Userinfo);
+export default Userinfo;

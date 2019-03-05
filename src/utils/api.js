@@ -12,7 +12,7 @@ const instance = axios.create({
     baseURL: httpConfig.apiUrl,
     timeout: 5000,
     headers: defaultHeader,
-    withCredentials: false
+    withCredentials: false,
 });
 
 const returnJson = (response) => response.data;

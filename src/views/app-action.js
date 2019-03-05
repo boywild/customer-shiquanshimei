@@ -25,19 +25,19 @@ const deleteNotice = (id) => {
 
 const login = (username, password) =>
     createAsyncAction('APP_LOGIN', () => {
-        // api.post('/login', {
-        //     username,
-        //     password
-        // })
-        return new Promise(function(resolve) {
-            resolve({
-                data: {
-                    id: 1,
-                    name: 'Admin',
-                    authorities: 'admin'
-                }
-            });
+        return api.post('/admin/login', {
+            telephone: username,
+            password
         });
+        // return new Promise(function(resolve) {
+        //     resolve({
+        //         data: {
+        //             id: 1,
+        //             name: 'Admin',
+        //             authorities: 'admin'
+        //         }
+        //     });
+        // });
     });
 
 const resetLoginErrorMsg = () => ({
