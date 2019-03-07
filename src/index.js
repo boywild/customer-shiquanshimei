@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
+// import createBrowserHistory from 'history/createBrowserHistory';
+import createBrowserHistory from 'history/createHashHistory';
 import { LocaleProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import 'antd/dist/antd.css';

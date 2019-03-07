@@ -34,8 +34,8 @@ module.exports = {
     },
     output: {
         path: CLIENT_DIR,
-        publicPath: ASSET_PATH,
-        filename: 'assets/script/[name].[hash:8].js',
+        // publicPath: ASSET_PATH,
+        filename: './assets/script/[name].[hash:8].js',
         libraryTarget: 'umd'
     },
     resolve: {
@@ -54,7 +54,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[hash:8].[ext]',
-                        outputPath: 'assets/fonts/'
+                        outputPath: './assets/fonts/'
                     }
                 }
             },
@@ -66,7 +66,7 @@ module.exports = {
                         limit: 8192,
                         fallback: 'file-loader',
                         name: '[name].[hash:8].[ext]',
-                        outputPath: 'assets/images/'
+                        outputPath: './assets/images/'
                     }
                 }
             }

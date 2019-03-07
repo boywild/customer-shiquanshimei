@@ -119,9 +119,9 @@ module.exports = merge(webpackConfig, {
     plugins: [
         new cleanWebpackPlugin(['build']),
         new MiniCssExtractPlugin({
-            filename: 'assets/style/style.[hash:8].css',
-            chunkFilename: 'assets/style/[id].[hash:8].css'
+            filename: './assets/style/style.[hash:8].css',
+            chunkFilename: './assets/style/[id].[hash:8].css'
         })
     ],
-    devtool: 'eval-source-map'
+    devtool: 'source-map'
 });
