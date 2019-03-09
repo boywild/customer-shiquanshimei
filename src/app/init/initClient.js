@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 import isNil from 'lodash/isNil';
-import appAction from 'views/app-action';
+// import appAction from 'views/app-action';
 
 const initClient = (dispatch) => {
     const isLogin = !isNil(Cookie.get('user'));
@@ -14,7 +14,7 @@ const initClient = (dispatch) => {
                 payload: JSON.parse(Cookie.get('user'))
             })
         );
-        commonActions.push(dispatch(appAction.getNotices()));
+        // commonActions.push(dispatch(appAction.getNotices()));
     }
 
     return commonActions;

@@ -63,6 +63,7 @@ const loginUser = (username, password) => {
 
 const logout = () => {
     Cookie.remove('user');
+    Cookie.remove('adminExpire');
 
     return {
         type: 'APP_LOGOUT'
