@@ -13,11 +13,13 @@ import { Card, Input, Table, Tabs } from 'antd';
 import action from './action';
 const Search = Input.Search;
 const TabPane = Tabs.TabPane;
-const propTypes = {
-    getMsg: PropTypes.func.isRequired
-};
 
 class MessageList extends Component {
+    static propTypes = {
+        getMsg: PropTypes.func,
+        msgList: PropTypes.array,
+    };
+
     componentDidMount() {
         const { getMsg } = this.props;
         getMsg({
@@ -51,40 +53,17 @@ class MessageList extends Component {
             }
         ];
 
-        const data = [
-            {
-                key: '1',
-                announcementId: 'John Brown',
-                announcementTitle: 32,
-                status: 'New York No. 1 Lake Park',
-                content: '2019:22:22 10:22:22'
-            },
-            {
-                key: '2',
-                announcementId: 'John Brown',
-                announcementTitle: 32,
-                status: 'New York No. 1 Lake Park',
-                content: '2019:22:22 10:22:22'
-            },
-            {
-                key: '3',
-                announcementId: 'John Brown',
-                announcementTitle: 32,
-                status: 'New York No. 1 Lake Park',
-                content: '2019:22:22 10:22:22'
-            }
-        ];
         return (
             <div>
-                <Card title="公告新闻" bordered={false}>
-                    <Tabs defaultActiveKey="1">
-                        <TabPane tab="筛选" key="1">
-                            <div className="mgb20 serch-box">
-                                <span className="serch-lable">关键字</span>
+                <Card title='公告新闻' bordered={false}>
+                    <Tabs defaultActiveKey='1'>
+                        <TabPane tab='筛选' key='1'>
+                            <div className='mgb20 serch-box'>
+                                <span className='serch-lable'>关键字</span>
                                 <Search
-                                    className="serch-txt"
-                                    placeholder="输入公告内容信息搜索"
-                                    enterButton="搜索"
+                                    className='serch-txt'
+                                    placeholder='输入公告内容信息搜索'
+                                    enterButton='搜索'
                                     onSearch={(value) => console.log(value)}
                                 />
                             </div>
@@ -105,7 +84,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getMsg: action.getMsg
 };
-MessageList.propTypes = propTypes;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

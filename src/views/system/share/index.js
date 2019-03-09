@@ -13,11 +13,12 @@ import httpConfig from 'app/config/httpConfig';
 
 import action from './action';
 
-const propTypes = {
-    getShareOpt: PropTypes.func
-};
-
 class ShareForm extends Component {
+    static propTypes = {
+        getShareOpt: PropTypes.func,
+        shareOpt: PropTypes.object,
+        saveShareOpt: PropTypes.func
+    };
     componentDidMount() {
         const { getShareOpt } = this.props;
         getShareOpt();
@@ -33,7 +34,6 @@ class ShareForm extends Component {
         const { form, saveShareOpt, shareOpt } = this.props;
         form.validateFields((err, values) => {
             if (err) return false;
-            console.log(values);
             saveShareOpt({
                 ...shareOpt,
                 ...values,
@@ -123,7 +123,6 @@ const mapDispatchToProps = {
 };
 
 const Share = Form.create({ name: 'aa' })(ShareForm);
-Share.propTypes = propTypes;
 export default connect(
     mapStateToProps,
     mapDispatchToProps

@@ -13,12 +13,12 @@ import { Card, Button, Form, Input } from 'antd';
 import action from './action';
 const { TextArea } = Input;
 
-const propTypes = {
-    outlets: PropTypes.array.isRequired,
-    saveMsg: PropTypes.func
-};
-
 class loginLIstForm extends Component {
+    static propTypes = {
+        outlets: PropTypes.array.isRequired,
+        saveMsg: PropTypes.func
+    };
+
     handleSubmit = (e) => {
         e.preventDefault();
         const { saveMsg, form } = this.props;
@@ -47,16 +47,16 @@ class loginLIstForm extends Component {
         };
         return (
             <div>
-                <Card title="添加公告" bordered={false}>
-                    <Link to="/message/msglist">
-                        <Button className="mgb20" type="primary">
+                <Card title='添加公告' bordered={false}>
+                    <Link to='/message/msglist'>
+                        <Button className='mgb20' type='primary'>
                             返回列表
                         </Button>
                     </Link>
 
-                    <Card title="添加公告" type="inner">
+                    <Card title='添加公告' type='inner'>
                         <Form onSubmit={this.handleSubmit}>
-                            <Form.Item {...formItemLayout} label="标题">
+                            <Form.Item {...formItemLayout} label='标题'>
                                 {getFieldDecorator('announcementTitle', {
                                     rules: [
                                         {
@@ -66,7 +66,7 @@ class loginLIstForm extends Component {
                                     ]
                                 })(<Input />)}
                             </Form.Item>
-                            <Form.Item {...formItemLayout} label="公告详情">
+                            <Form.Item {...formItemLayout} label='公告详情'>
                                 {getFieldDecorator('content', {
                                     rules: [
                                         {
@@ -77,10 +77,10 @@ class loginLIstForm extends Component {
                                 })(<TextArea rows={5} />)}
                             </Form.Item>
                             <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                                <Button className="mgr10" type="primary" htmlType="submit">
+                                <Button className='mgr10' type='primary' htmlType='submit'>
                                     提交
                                 </Button>
-                                <Button className="mgl10" onClick={this.handleReset}>
+                                <Button className='mgl10' onClick={this.handleReset}>
                                     清空
                                 </Button>
                             </Form.Item>
@@ -100,7 +100,7 @@ const mapDispatchToProps = {
     saveMsg: action.saveMsg
 };
 const loginLIst = Form.create({ name: 'register' })(loginLIstForm);
-loginLIst.propTypes = propTypes;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

@@ -5,8 +5,8 @@
  * @Modified By: chentian
  * @Last Modified: 2019-02-23 15:17:05
  */
-import Outlets from 'views/outlets';
-import Unauthorized from 'views/unauthorized';
+// import Outlets from 'views/outlets';
+// import Unauthorized from 'views/unauthorized';
 import MemberCard from 'views/member/memberCard';
 import MemberList from 'views/member/memberList';
 const memberRouter = [

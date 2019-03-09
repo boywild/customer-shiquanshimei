@@ -12,11 +12,14 @@ import { Card, Form, Input, Button, Select, Upload, Icon } from 'antd';
 import action from './action';
 // import httpConfig from 'app/config/httpConfig';
 const Option = Select.Option;
-const propTypes = {
-    getSysSetting1: PropTypes.func
-};
 
 class System1Form extends Component {
+    static propTypes = {
+        getSysSetting1: PropTypes.func,
+        sysSetting1: PropTypes.object,
+        saveSysSetting1: PropTypes.func
+    };
+
     componentDidMount() {
         const { getSysSetting1 } = this.props;
         getSysSetting1();
@@ -165,7 +168,7 @@ const mapDispatchToProps = {
 };
 
 const System1 = Form.create({ name: 'System1Form' })(System1Form);
-System1.propTypes = propTypes;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

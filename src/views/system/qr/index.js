@@ -16,12 +16,12 @@ import NameStyle from './NameStyle';
 
 import './index.scss';
 
-const propTypes = {
-    qrCode: PropTypes.object,
-    getQrDb: PropTypes.func
-};
-
 class QrForm extends Component {
+    static propTypes = {
+        qrCode: PropTypes.object,
+        getQrDb: PropTypes.func,
+        saveQrDb: PropTypes.func
+    };
     componentDidMount() {
         const { getQrDb } = this.props;
         getQrDb();
@@ -140,7 +140,6 @@ const mapDispatchToProps = {
 };
 
 const Qr = Form.create({ name: 'qr' })(QrForm);
-Qr.propTypes = propTypes;
 export default connect(
     mapStateToProps,
     mapDispatchToProps

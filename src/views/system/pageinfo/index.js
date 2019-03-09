@@ -13,12 +13,14 @@ import httpConfig from 'app/config/httpConfig';
 import action from './action';
 const { TextArea } = Input;
 
-const propTypes = {
-    pageInfo: PropTypes.array,
-    getPageInfo: PropTypes.func
-};
-
 class PageinfoForm extends Component {
+    static propTypes = {
+        pageInfo: PropTypes.array,
+        getPageInfo: PropTypes.func,
+        getBanner: PropTypes.func,
+        savePageInfo: PropTypes.func,
+        saveBanner: PropTypes.func
+    };
     componentDidMount() {
         const { getPageInfo, getBanner } = this.props;
         getPageInfo();
@@ -211,7 +213,6 @@ const mapDispatchToProps = {
 };
 
 const Pageinfo = Form.create({ name: 'pageinfo' })(PageinfoForm);
-Pageinfo.propTypes = propTypes;
 export default connect(
     mapStateToProps,
     mapDispatchToProps

@@ -13,12 +13,13 @@ import action from './action';
 import './index.scss';
 
 const Option = Select.Option;
-const propTypes = {
-    outlets: PropTypes.array.isRequired,
-    getMemberCard: PropTypes.func
-};
+
 
 class MemberList extends Component {
+    static propTypes = {
+        getMemberCard: PropTypes.func,
+        memberCard: PropTypes.array
+    };
     test = () => {
         let arr = [];
         for (let i = 1; i <= 13; i++) {
@@ -74,7 +75,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getMemberCard: action.getMemberCard
 };
-MemberList.propTypes = propTypes;
 export default connect(
     mapStateToProps,
     mapDispatchToProps

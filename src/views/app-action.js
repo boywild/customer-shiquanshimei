@@ -52,7 +52,7 @@ const loginUser = (username, password) => {
             // console.log(callbackAction);
             if (callbackAction.type === 'APP_LOGIN_SUCCESS') {
                 Cookie.set('user', JSON.stringify(callbackAction.payload));
-                return getNotices()(dispatch);
+                // return getNotices()(dispatch);
             }
             if (callbackAction.type === 'APP_LOGIN_ERROR') {
                 return setTimeout(() => dispatch(resetLoginErrorMsg()), 1500);

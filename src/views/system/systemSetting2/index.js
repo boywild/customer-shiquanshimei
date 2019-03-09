@@ -14,14 +14,14 @@ import moment from 'moment';
 import action from './action';
 const { RangePicker } = DatePicker;
 
-const propTypes = {
-    getBasicSet: PropTypes.func,
-    saveBasicSet: PropTypes.func,
-    getBasicGroup: PropTypes.func,
-    saveBasicGroup: PropTypes.func
-};
-
 class System2Form extends Component {
+    static propTypes = {
+        baseSetting: PropTypes.object,
+        getBasicSet: PropTypes.func,
+        saveBasicSet: PropTypes.func,
+        getBasicGroup: PropTypes.func,
+        saveBasicGroup: PropTypes.func
+    };
     componentDidMount() {
         const { getBasicSet, getBasicGroup } = this.props;
         getBasicSet();
@@ -153,7 +153,6 @@ const mapDispatchToProps = {
 };
 
 const System2 = Form.create({ name: 'aa' })(System2Form);
-System2.propTypes = propTypes;
 export default connect(
     mapStateToProps,
     mapDispatchToProps

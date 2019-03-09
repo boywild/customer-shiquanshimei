@@ -13,11 +13,13 @@ import { Card, Input, Table, Tabs, Divider, Checkbox } from 'antd';
 import action from './action';
 const Search = Input.Search;
 const TabPane = Tabs.TabPane;
-const propTypes = {
-    getMemberList: PropTypes.func
-};
 
 class MemberCard extends Component {
+    static propTypes = {
+        getMemberList: PropTypes.func,
+        memberList: PropTypes.object,
+        deleteMember: PropTypes.func
+    };
     componentDidMount() {
         const { getMemberList } = this.props;
         getMemberList({
@@ -80,11 +82,11 @@ class MemberCard extends Component {
                 key: 'handle',
                 render: (text, record) => (
                     <span>
-                        <a href="javascript:;" onClick={() => this.handleMember(1, record)}>
+                        <a href='javascript:;' onClick={() => this.handleMember(1, record)}>
                             锁定
                         </a>
-                        <Divider type="vertical" />
-                        <a href="javascript:;" onClick={() => this.handleMember(2, record)}>
+                        <Divider type='vertical' />
+                        <a href='javascript:;' onClick={() => this.handleMember(2, record)}>
                             删除
                         </a>
                     </span>
@@ -93,16 +95,16 @@ class MemberCard extends Component {
         ];
         return (
             <div>
-                <Card title="会员管理" bordered={false}>
-                    <Tabs defaultActiveKey="1">
-                        <TabPane tab="筛选" key="1">
-                            <Checkbox className="mgb20">显示默认群主</Checkbox>
-                            <div className="mgb20 serch-box">
-                                <span className="serch-lable">关键字</span>
+                <Card title='会员管理' bordered={false}>
+                    <Tabs defaultActiveKey='1'>
+                        <TabPane tab='筛选' key='1'>
+                            <Checkbox className='mgb20'>显示默认群主</Checkbox>
+                            <div className='mgb20 serch-box'>
+                                <span className='serch-lable'>关键字</span>
                                 <Search
-                                    className="serch-txt"
-                                    placeholder="输入会员名字"
-                                    enterButton="搜索"
+                                    className='serch-txt'
+                                    placeholder='输入会员名字'
+                                    enterButton='搜索'
                                     onSearch={(value) => console.log(value)}
                                 />
                             </div>
@@ -124,7 +126,7 @@ const mapDispatchToProps = {
     getMemberList: action.getMemberList,
     deleteMember: action.deleteMember
 };
-MemberCard.propTypes = propTypes;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

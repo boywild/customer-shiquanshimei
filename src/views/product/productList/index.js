@@ -13,11 +13,11 @@ import { Card, Input, Table, Tabs } from 'antd';
 import action from './action';
 const Search = Input.Search;
 const TabPane = Tabs.TabPane;
-const propTypes = {
-    getProduct: PropTypes.func
-};
-
 class MessageList extends Component {
+    static propTypes = {
+        getProduct: PropTypes.func,
+        productList: PropTypes.array
+    };
     componentDidMount() {
         const { getProduct } = this.props;
         getProduct({
@@ -79,7 +79,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getProduct: action.getProduct
 };
-MessageList.propTypes = propTypes;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

@@ -13,11 +13,11 @@ import Cookie from 'js-cookie';
 
 import action from './action';
 
-const propTypes = {
-    param: PropTypes.func
-};
-
 class ModifyinfoForm extends Component {
+    static propTypes = {
+        saveUserInfo: PropTypes.func
+    };
+
     componentDidMount() {
         this.userInfo = JSON.parse(Cookie.get('user'));
         this.props.form.setFieldsValue({ ...this.userInfo });
@@ -122,16 +122,14 @@ class ModifyinfoForm extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    outlets: state.outlets.outlets
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
-    param: action.param
+    saveUserInfo: action.saveUserInfo
 };
 
 const Modifyinfo = Form.create({ name: 'register' })(ModifyinfoForm);
-Modifyinfo.propTypes = propTypes;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

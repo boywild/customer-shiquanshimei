@@ -9,7 +9,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Input, Checkbox } from 'antd';
 export default class NameStyle extends Component {
-    static propTypes = {};
+    static propTypes = {
+        onChange: PropTypes.func,
+        value: PropTypes.object
+    };
     static getDerivedStateFromProps(nextProps) {
         if ('value' in nextProps) {
             return {

@@ -11,11 +11,13 @@ import { connect } from 'react-redux';
 import { Card, Form, Input, Button } from 'antd';
 import action from './action';
 
-const propTypes = {
-    getUpdateSetting: PropTypes.func
-};
-
 class PromotionForm extends Component {
+    static propTypes = {
+        getUpdateSetting: PropTypes.func,
+        updateSetting: PropTypes.func,
+        saveUpdateSetting: PropTypes.func
+    };
+
     componentDidMount() {
         const { getUpdateSetting } = this.props;
         getUpdateSetting({});
@@ -114,7 +116,7 @@ const mapDispatchToProps = {
 };
 
 const Promotion = Form.create({ name: 'promotion' })(PromotionForm);
-Promotion.propTypes = propTypes;
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps

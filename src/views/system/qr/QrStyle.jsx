@@ -10,7 +10,10 @@ import PropTypes from 'prop-types';
 import { Input } from 'antd';
 
 export default class QrStyle extends Component {
-    static propTypes = {};
+    static propTypes = {
+        onChange: PropTypes.func,
+        value: PropTypes.object
+    };
     static getDerivedStateFromProps(nextProps) {
         if ('value' in nextProps) {
             return {
