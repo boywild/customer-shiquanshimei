@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
 import { Input, Icon, Button } from 'antd';
 import appAction from 'views/app-action';
-import logo from 'assets/logo.svg';
+import logo from 'assets/logo.png';
 import './index.scss';
 
 const propTypes = {
@@ -136,7 +136,7 @@ class Login extends Component {
         return (
             <div className={prefixCls}>
                 {this.renderLoginPanel()}
-                {this.renderIntlSwitch()}
+                {/* {this.renderIntlSwitch()} */}
             </div>
         );
     }

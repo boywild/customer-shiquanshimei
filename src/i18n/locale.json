@@ -70,7 +70,7 @@
         "outletDetail_notificationContent": "Notification will dismiss after {seconds}s."
     },
     "zh-cn": {
-        "appName": "React 中后台应用",
+        "appName": "十全十美管理系统",
         "siderMenu_system": "系统管理",
         "siderMenu_system_setting1": "系统设置1",
         "siderMenu_system_setting2": "系统设置2",
@@ -127,7 +127,7 @@
         "notFound_404": "页面不存在",
         "unauthorized_403": "无权限查看",
         "exception_backToHome": "返回首页",
-        "login_appDesc": "企业级管理系统 React 应用模版",
+        "login_appDesc": "请输入手机号和密码进行登陆",
         "login_usernameInput_placeholder": "请输入用户名",
         "login_passwordInput_placeholder": "请输入密码",
         "login_login_btn": "登陆",

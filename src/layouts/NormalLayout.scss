@@ -2,5 +2,6 @@
 
 .normalLayout {
     min-height: 100vh;
-    background: $layout-body-background;
+    background: url('/assets/login-bg.jpg') center center  no-repeat;
+    background-size: cover;
 }

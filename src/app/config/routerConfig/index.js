@@ -29,7 +29,7 @@ const normalRoutes = [
     {
         path: '/',
         exact: true,
-        redirect: '/outlets'
+        redirect: '/login'
     },
     {
         path: '/login',
