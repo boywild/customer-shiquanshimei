@@ -9,7 +9,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
-import { Avatar, Dropdown, Menu, Icon, Breadcrumb, Popover } from 'antd';
+import { Avatar, Dropdown, Menu, Icon, Breadcrumb, Popover, Spin } from 'antd';
 import Sider from 'react-sider';
 import 'react-sider/lib/index.css';
 import menuData from 'app/config/menuConfig';
@@ -34,7 +34,8 @@ const propTypes = {
     notification: PropTypes.object.isRequired,
     resetNotification: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    route: PropTypes.object.isRequired
+    route: PropTypes.object.isRequired,
+    loading:PropTypes.bool
 };
 
 const defaultProps = {
@@ -73,7 +74,7 @@ class BasicLayout extends Component {
                     key={notice.id}
                     className={`${prefixCls}-noticeItem`}
                     onClick={() => deleteNotice(notice.id)}
-                    role="presentation">
+                    role='presentation'>
                     <div className={`${prefixCls}-noticeTitle`}>{notice.title}</div>
                     <div className={`${prefixCls}-noticeMessage`}>{notice.message}</div>
                 </div>
@@ -83,17 +84,17 @@ class BasicLayout extends Component {
         const userMenu = (
             <Menu>
                 <Menu.Item disabled className={`${prefixCls}-userMenuItem`}>
-                    <Icon type="user" className={`${prefixCls}-userMenuIcon`} />
+                    <Icon type='user' className={`${prefixCls}-userMenuIcon`} />
                     <span>{intl.formatMessage({ id: 'basicLayout_profile' })}</span>
                 </Menu.Item>
                 <Menu.Item disabled className={`${prefixCls}-userMenuItem`}>
-                    <Icon type="setting" className={`${prefixCls}-userMenuIcon`} />
+                    <Icon type='setting' className={`${prefixCls}-userMenuIcon`} />
                     <span>{intl.formatMessage({ id: 'basicLayout_setting' })}</span>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item className={`${prefixCls}-userMenuItem`}>
-                    <div onClick={logout} role="presentation">
-                        <Icon type="logout" className={`${prefixCls}-userMenuIcon`} />
+                    <div onClick={logout} role='presentation'>
+                        <Icon type='logout' className={`${prefixCls}-userMenuIcon`} />
                         <span>{intl.formatMessage({ id: 'basicLayout_logout' })}</span>
                     </div>
                 </Menu.Item>
@@ -103,11 +104,11 @@ class BasicLayout extends Component {
         return (
             <div className={`${prefixCls}-header`}>
                 <div className={`${prefixCls}-notice`}>
-                    <Popover placement="bottomRight" arrowPointAtCenter trigger="click" content={noticeMenu}>
-                        <Icon className={`${prefixCls}-noticeIcon`} type="bell" />
+                    <Popover placement='bottomRight' arrowPointAtCenter trigger='click' content={noticeMenu}>
+                        <Icon className={`${prefixCls}-noticeIcon`} type='bell' />
                     </Popover>
                 </div>
-                <Dropdown overlay={userMenu} placement="bottomRight">
+                <Dropdown overlay={userMenu} placement='bottomRight'>
                     <div className={`${prefixCls}-avatarContainer`}>
                         <Avatar className={`${prefixCls}-avatar`}>{getFirstChar(user.name)}</Avatar>
                     </div>
@@ -175,7 +176,7 @@ class BasicLayout extends Component {
     };
 
     render() {
-        const { prefixCls, className, intl, isLogin, location, children } = this.props;
+        const { prefixCls, className, intl, isLogin, location, children, loading } = this.props;
 
         const classes = classnames({
             [prefixCls]: true,
@@ -194,7 +195,11 @@ class BasicLayout extends Component {
                     <div className={`${prefixCls}-content`}>
                         {this.renderHeader()}
                         {this.renderPageHeader()}
-                        <div className={`${prefixCls}-mainContent`}>{children}</div>
+                        <div className={`${prefixCls}-mainContent`}>
+                            <Spin spinning={loading} size='large' delay={500} tip='数据正在加载中请稍后'>
+                                {children}
+                            </Spin>
+                        </div>
                         {this.renderFooter()}
                     </div>
                 </div>
@@ -212,7 +217,8 @@ const mapStateToProps = (state) => {
         user: state.app.user,
         route,
         notices: state.app.notices,
-        notification: state.app.notification
+        notification: state.app.notification,
+        loading: state.app.loading
     };
 };
 

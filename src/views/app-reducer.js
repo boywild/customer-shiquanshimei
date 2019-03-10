@@ -15,7 +15,8 @@ const defaultState = () => ({
     notification: {
         title: '',
         content: ''
-    }
+    },
+    loading: false
 });
 
 const loginSuccess = (state, action) => ({
@@ -59,6 +60,14 @@ const resetNotification = (state) => ({
     }
 });
 
+const loadingStart = (state) => ({
+    ...state,
+    loading: true
+});
+const loadingEnd = (state) => ({
+    ...state,
+    loading: false
+});
 export default createReducer(defaultState, {
     APP_LOGIN_SUCCESS: loginSuccess,
     APP_LOGIN_ERROR: loginError,
@@ -66,5 +75,7 @@ export default createReducer(defaultState, {
     APP_LOGOUT: logout,
     APP_GET_NOTICES_SUCCESS: getNoticesSuccess,
     APP_UPDATE_NOTIFICATION: updateNotification,
-    APP_RESET_NOTIFICATION: resetNotification
+    APP_RESET_NOTIFICATION: resetNotification,
+    APP_LOADING_START: loadingStart,
+    APP_LOADING_END: loadingEnd
 });

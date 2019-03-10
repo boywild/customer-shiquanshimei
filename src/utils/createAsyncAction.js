@@ -1,3 +1,5 @@
+import { message } from 'antd';
+
 function createAsyncAction(name, callback, meta = {}) {
     if (typeof callback !== 'function') {
         throw new Error('[createAsyncAction] callback should be a function');
@@ -8,7 +10,10 @@ function createAsyncAction(name, callback, meta = {}) {
             meta,
             type: `${name}_REQUEST`
         });
-
+        dispatch({
+            meta,
+            type: 'APP_LOADING_START'
+        });
         try {
             return callback()
                 .then((value) => {
@@ -29,7 +34,10 @@ function createAsyncAction(name, callback, meta = {}) {
                             return result;
                         })()
                     };
-
+                    dispatch({
+                        meta,
+                        type: 'APP_LOADING_END'
+                    });
                     dispatch(action);
                     return action;
                 })
@@ -42,6 +50,11 @@ function createAsyncAction(name, callback, meta = {}) {
                     };
 
                     dispatch(action);
+                    dispatch({
+                        meta,
+                        type: 'APP_LOADING_END'
+                    });
+                    message.error(err.resultMsg, 1);
                     return action;
                 });
         } catch (err) {
@@ -51,8 +64,12 @@ function createAsyncAction(name, callback, meta = {}) {
                 payload: err,
                 error: true
             };
-
             dispatch(action);
+            dispatch({
+                meta,
+                type: 'APP_LOADING_END'
+            });
+            message.error(err.resultMsg, 1);
             return Promise.resolve(action);
         }
     };

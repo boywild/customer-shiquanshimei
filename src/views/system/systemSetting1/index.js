@@ -36,7 +36,6 @@ class System1Form extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (err) return false;
-            // console.log(values);
             this.props.saveSysSetting1({ ...values, keywords: values.keywords.join(',') });
         });
     };
