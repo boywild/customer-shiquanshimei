@@ -92,8 +92,8 @@ module.exports = merge(webpackConfig, {
         contentBase: SOURCE_DIR,
         historyApiFallback: true,
         proxy: {
-            '/pp/*': {
-                target: 'http://fmvhcf.natappfree.cc/cc',
+            '*': {
+                target: 'http://47.244.141.145/pp',
                 changeOrigin: true
             }
         }
