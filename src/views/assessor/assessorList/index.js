@@ -23,7 +23,14 @@ class AssessorList extends Component {
         const { getAssessorList } = this.props;
         getAssessorList();
     }
-
+    search = (value) => {
+        const { getAssessorList } = this.props;
+        getAssessorList({
+            pageNum: 1,
+            pageSize: 10,
+            userName: value
+        });
+    };
     render() {
         const columns = [
             {
@@ -73,9 +80,9 @@ class AssessorList extends Component {
                                 <span className='serch-lable'>关键字</span>
                                 <Search
                                     className='serch-txt'
-                                    placeholder='输入申请人信息搜索'
+                                    placeholder='输入申请人姓名搜索'
                                     enterButton='搜索'
-                                    onSearch={(value) => console.log(value)}
+                                    onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>

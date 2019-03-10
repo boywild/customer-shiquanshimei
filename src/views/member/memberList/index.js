@@ -17,7 +17,7 @@ const TabPane = Tabs.TabPane;
 class MemberCard extends Component {
     static propTypes = {
         getMemberList: PropTypes.func,
-        memberList: PropTypes.object,
+        memberList: PropTypes.array,
         deleteMember: PropTypes.func
     };
     componentDidMount() {
@@ -27,6 +27,14 @@ class MemberCard extends Component {
             pageSize: 10
         });
     }
+    search = (value) => {
+        const { getMemberList } = this.props;
+        getMemberList({
+            pageNum: 1,
+            pageSize: 10,
+            userName: value
+        });
+    };
     handleMember = (flag, record) => {
         this.props.deleteMember(
             {
@@ -105,7 +113,7 @@ class MemberCard extends Component {
                                     className='serch-txt'
                                     placeholder='输入会员名字'
                                     enterButton='搜索'
-                                    onSearch={(value) => console.log(value)}
+                                    onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>

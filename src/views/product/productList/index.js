@@ -25,7 +25,14 @@ class MessageList extends Component {
             pageSize: 10
         });
     }
-
+    search = (value) => {
+        const { getProduct } = this.props;
+        getProduct({
+            pageNum: 1,
+            pageSize: 10,
+            productTitle: value
+        });
+    };
     render() {
         const columns = [
             {
@@ -58,9 +65,9 @@ class MessageList extends Component {
                                 <span className='serch-lable'>关键字</span>
                                 <Search
                                     className='serch-txt'
-                                    placeholder='输入公告内容信息搜索'
+                                    placeholder='输入产品标题搜索'
                                     enterButton='搜索'
-                                    onSearch={(value) => console.log(value)}
+                                    onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>

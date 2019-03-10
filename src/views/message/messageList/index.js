@@ -17,7 +17,7 @@ const TabPane = Tabs.TabPane;
 class MessageList extends Component {
     static propTypes = {
         getMsg: PropTypes.func,
-        msgList: PropTypes.array,
+        msgList: PropTypes.array
     };
 
     componentDidMount() {
@@ -28,7 +28,14 @@ class MessageList extends Component {
             pageSize: 10
         });
     }
-
+    search = (value) => {
+        const { getMsg } = this.props;
+        getMsg({
+            pageNum: 1,
+            pageSize: 10,
+            productTitle: value
+        });
+    };
     render() {
         const columns = [
             {
@@ -64,7 +71,7 @@ class MessageList extends Component {
                                     className='serch-txt'
                                     placeholder='输入公告内容信息搜索'
                                     enterButton='搜索'
-                                    onSearch={(value) => console.log(value)}
+                                    onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>

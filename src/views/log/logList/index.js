@@ -27,7 +27,14 @@ class loginLIst extends Component {
             pageSize: 10
         });
     }
-
+    search = (value) => {
+        const { getLog } = this.props;
+        getLog({
+            pageNum: 1,
+            pageSize: 10,
+            content: value
+        });
+    };
     render() {
         const columns = [
             {
@@ -53,16 +60,16 @@ class loginLIst extends Component {
         ];
         return (
             <div>
-                <Card title="互助日志" bordered={false}>
-                    <Tabs defaultActiveKey="1">
-                        <TabPane tab="筛选" key="1">
-                            <div className="mgb20 serch-box">
-                                <span className="serch-lable">关键字</span>
+                <Card title='互助日志' bordered={false}>
+                    <Tabs defaultActiveKey='1'>
+                        <TabPane tab='筛选' key='1'>
+                            <div className='mgb20 serch-box'>
+                                <span className='serch-lable'>关键字</span>
                                 <Search
-                                    className="serch-txt"
-                                    placeholder="输入手机号"
-                                    enterButton="搜索"
-                                    onSearch={(value) => console.log(value)}
+                                    className='serch-txt'
+                                    placeholder='输入手机号'
+                                    enterButton='搜索'
+                                    onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>
