@@ -25,10 +25,14 @@ const deleteNotice = (id) => {
 
 const login = (username, password) =>
     createAsyncAction('APP_LOGIN', () => {
-        return api.post('/admin/login', {
-            telephone: username,
-            password
-        });
+        return api.post(
+            '/admin/login',
+            {
+                telephone: username,
+                password
+            },
+            { withCredentials: false,tips:'asdfasd' }
+        );
         // return new Promise(function(resolve) {
         //     resolve({
         //         data: {

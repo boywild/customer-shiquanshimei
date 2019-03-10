@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { message } from 'antd';
+import _ from 'lodash';
+
 // import { buildConfig } from 'app/config/buildConfig';
-import httpConfig from 'app/config/httpConfig';
+// import httpConfig from 'app/config/httpConfig';
 
 const defaultHeader = {
     Accept: 'application/json',
@@ -9,7 +12,7 @@ const defaultHeader = {
 
 const instance = axios.create({
     // baseURL: buildConfig.apiDomain,
-    baseURL: httpConfig.apiUrl,
+    // baseURL: httpConfig.apiUrl,
     timeout: 5000,
     headers: defaultHeader,
     withCredentials: false
@@ -18,7 +21,7 @@ const instance = axios.create({
 const returnJson = (response) => response.data;
 
 const standardResponse = (response) => {
-    if (response.status < 400) {
+    if (response.status < 400 && response.data.resultCode === '000000') {
         return returnJson(response);
     }
     return Promise.reject(returnJson(response));
@@ -42,17 +45,19 @@ const api = () => {
                     params: query,
                     ...options
                 })
-                .then(standardResponse)
-                .catch(function(error) {
-                    console.log(error);
-                }),
+                .then(standardResponse),
         post: (url, data, options) =>
             opt.instance
-                .post(url, data)
-                .then(standardResponse)
-                .catch(function(error) {
-                    console.log(error);
-                }),
+                .post(
+                    url,
+                    {
+                        ...data
+                    },
+                    {
+                        ...options
+                    }
+                )
+                .then(standardResponse),
         all: (url) => {
             if (!Array.isArray(url)) return new Error('Type error:url must be Array');
             opt.instance.all([...url]).then(
