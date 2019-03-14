@@ -31,6 +31,12 @@ class AssessorList extends Component {
             userName: value
         });
     };
+    onChange = (pageNumber) => {
+        console.log('Page: ', pageNumber);
+    };
+    onShowSizeChange = (current, pageSize) => {
+        console.log(current, pageSize);
+    };
     render() {
         const columns = [
             {
@@ -68,26 +74,34 @@ class AssessorList extends Component {
                 title: '操作',
                 dataIndex: 'handle',
                 key: 'handle',
-                render: (text, record) => (record.checkStatus === '0' ? <a href='javascript:;'>审核</a> : '审核')
+                render: (text, record) => (record.checkStatus === '0' ? <a href="javascript:;">审核</a> : '审核')
             }
         ];
+        const pagination = {
+            defaultCurrent: 1,
+            showSizeChanger: true,
+            showQuickJumper: true,
+            total: 500,
+            onShowSizeChange: this.onShowSizeChange,
+            onChange: this.onChange
+        };
         return (
             <div>
-                <Card title='审核管理' bordered={false}>
-                    <Tabs defaultActiveKey='1'>
-                        <TabPane tab='筛选' key='1'>
-                            <div className='mgb20 serch-box'>
-                                <span className='serch-lable'>关键字</span>
+                <Card title="审核管理" bordered={false}>
+                    <Tabs defaultActiveKey="1">
+                        <TabPane tab="筛选" key="1">
+                            <div className="mgb20 serch-box">
+                                <span className="serch-lable">关键字</span>
                                 <Search
-                                    className='serch-txt'
-                                    placeholder='输入申请人姓名搜索'
-                                    enterButton='搜索'
+                                    className="serch-txt"
+                                    placeholder="输入申请人姓名搜索"
+                                    enterButton="搜索"
                                     onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>
                     </Tabs>
-                    <Table columns={columns} dataSource={this.props.assessorList} />
+                    <Table columns={columns} pagination={{ ...pagination }} dataSource={this.props.assessorList} />
                 </Card>
             </div>
         );

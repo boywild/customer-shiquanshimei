@@ -36,6 +36,12 @@ class MessageList extends Component {
             productTitle: value
         });
     };
+    onChange = (pageNumber) => {
+        console.log('Page: ', pageNumber);
+    };
+    onShowSizeChange = (current, pageSize) => {
+        console.log(current, pageSize);
+    };
     render() {
         const columns = [
             {
@@ -59,25 +65,32 @@ class MessageList extends Component {
                 key: 'content'
             }
         ];
-
+        const pagination = {
+            defaultCurrent: 1,
+            showSizeChanger: true,
+            showQuickJumper: true,
+            total: 500,
+            onShowSizeChange: this.onShowSizeChange,
+            onChange: this.onChange
+        };
         return (
             <div>
-                <Card title='公告新闻' bordered={false}>
-                    <Tabs defaultActiveKey='1'>
-                        <TabPane tab='筛选' key='1'>
-                            <div className='mgb20 serch-box'>
-                                <span className='serch-lable'>关键字</span>
+                <Card title="公告新闻" bordered={false}>
+                    <Tabs defaultActiveKey="1">
+                        <TabPane tab="筛选" key="1">
+                            <div className="mgb20 serch-box">
+                                <span className="serch-lable">关键字</span>
                                 <Search
-                                    className='serch-txt'
-                                    placeholder='输入公告内容信息搜索'
-                                    enterButton='搜索'
+                                    className="serch-txt"
+                                    placeholder="输入公告内容信息搜索"
+                                    enterButton="搜索"
                                     onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>
                     </Tabs>
                     ,
-                    <Table columns={columns} dataSource={this.props.msgList} />
+                    <Table columns={columns} pagination={{ ...pagination }} dataSource={this.props.msgList} />
                 </Card>
             </div>
         );

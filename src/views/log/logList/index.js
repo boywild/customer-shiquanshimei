@@ -35,6 +35,12 @@ class loginLIst extends Component {
             content: value
         });
     };
+    onChange = (pageNumber) => {
+        console.log('Page: ', pageNumber);
+    };
+    onShowSizeChange = (current, pageSize) => {
+        console.log(current, pageSize);
+    };
     render() {
         const columns = [
             {
@@ -58,23 +64,31 @@ class loginLIst extends Component {
                 key: 'createTime'
             }
         ];
+        const pagination = {
+            defaultCurrent: 1,
+            showSizeChanger: true,
+            showQuickJumper: true,
+            total: 500,
+            onShowSizeChange: this.onShowSizeChange,
+            onChange: this.onChange
+        };
         return (
             <div>
-                <Card title='互助日志' bordered={false}>
-                    <Tabs defaultActiveKey='1'>
-                        <TabPane tab='筛选' key='1'>
-                            <div className='mgb20 serch-box'>
-                                <span className='serch-lable'>关键字</span>
+                <Card title="互助日志" bordered={false}>
+                    <Tabs defaultActiveKey="1">
+                        <TabPane tab="筛选" key="1">
+                            <div className="mgb20 serch-box">
+                                <span className="serch-lable">关键字</span>
                                 <Search
-                                    className='serch-txt'
-                                    placeholder='输入手机号'
-                                    enterButton='搜索'
+                                    className="serch-txt"
+                                    placeholder="输入手机号"
+                                    enterButton="搜索"
                                     onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>
                     </Tabs>
-                    <Table columns={columns} dataSource={this.props.logoDb} />
+                    <Table columns={columns} pagination={{ ...pagination }} dataSource={this.props.logoDb} />
                 </Card>
             </div>
         );
