@@ -54,7 +54,7 @@ function createAsyncAction(name, callback, meta = {}) {
                         meta,
                         type: 'APP_LOADING_END'
                     });
-                    message.error(err.resultMsg, 1);
+                    message.error(err.resultMsg||'系统错误', 1);
                     return action;
                 });
         } catch (err) {
@@ -69,7 +69,7 @@ function createAsyncAction(name, callback, meta = {}) {
                 meta,
                 type: 'APP_LOADING_END'
             });
-            message.error(err.resultMsg, 1);
+            message.error(err.resultMsg||'系统错误', 1);
             return Promise.resolve(action);
         }
     };
