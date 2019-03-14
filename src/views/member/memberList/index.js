@@ -18,20 +18,25 @@ class MemberCard extends Component {
     static propTypes = {
         getMemberList: PropTypes.func,
         memberList: PropTypes.array,
-        deleteMember: PropTypes.func
+        deleteMember: PropTypes.func,
+        totalCount: PropTypes.number
     };
     componentDidMount() {
         const { getMemberList } = this.props;
         getMemberList({
-            pageNum: 1,
-            pageSize: 10
+            ...this.tableParams
         });
     }
+    tableParams = {
+        userName: '',
+        pageNum: 1,
+        pageSize: 10
+    };
     search = (value) => {
         const { getMemberList } = this.props;
+        this.tableParams.userName = value;
         getMemberList({
-            pageNum: 1,
-            pageSize: 10,
+            ...this.tableParams,
             userName: value
         });
     };
@@ -46,6 +51,21 @@ class MemberCard extends Component {
                 pageSize: 10
             }
         );
+    };
+    onChange = (pageNum) => {
+        this.tableParams.pageNum = pageNum;
+        this.props.getMemberList({
+            ...this.tableParams,
+            pageNum
+        });
+    };
+    onShowSizeChange = (current, pageSize) => {
+        this.tableParams.pageSize = pageSize;
+        this.props.getMemberList({
+            ...this.tableParams,
+            pageNum: current,
+            pageSize
+        });
     };
     render() {
         const columns = [
@@ -90,36 +110,45 @@ class MemberCard extends Component {
                 key: 'handle',
                 render: (text, record) => (
                     <span>
-                        <a href='javascript:;' onClick={() => this.handleMember(1, record)}>
+                        <a href="javascript:;" onClick={() => this.handleMember(1, record)}>
                             锁定
                         </a>
-                        <Divider type='vertical' />
-                        <a href='javascript:;' onClick={() => this.handleMember(2, record)}>
+                        <Divider type="vertical" />
+                        <a href="javascript:;" onClick={() => this.handleMember(2, record)}>
                             删除
                         </a>
                     </span>
                 )
             }
         ];
+        const { totalCount } = this.props;
+        const pagination = {
+            defaultCurrent: 1,
+            showSizeChanger: true,
+            showQuickJumper: true,
+            total: totalCount,
+            onShowSizeChange: this.onShowSizeChange,
+            onChange: this.onChange
+        };
         return (
             <div>
-                <Card title='会员管理' bordered={false}>
-                    <Tabs defaultActiveKey='1'>
-                        <TabPane tab='筛选' key='1'>
-                            <Checkbox className='mgb20'>显示默认群主</Checkbox>
-                            <div className='mgb20 serch-box'>
-                                <span className='serch-lable'>关键字</span>
+                <Card title="会员管理" bordered={false}>
+                    <Tabs defaultActiveKey="1">
+                        <TabPane tab="筛选" key="1">
+                            <Checkbox className="mgb20">显示默认群主</Checkbox>
+                            <div className="mgb20 serch-box">
+                                <span className="serch-lable">关键字</span>
                                 <Search
-                                    className='serch-txt'
-                                    placeholder='输入会员名字'
-                                    enterButton='搜索'
+                                    className="serch-txt"
+                                    placeholder="输入会员名字"
+                                    enterButton="搜索"
                                     onSearch={(value) => this.search(value)}
                                 />
                             </div>
                         </TabPane>
                     </Tabs>
 
-                    <Table columns={columns} dataSource={this.props.memberList} />
+                    <Table columns={columns} pagination={{ ...pagination }} dataSource={this.props.memberList} />
                 </Card>
             </div>
         );
@@ -127,7 +156,8 @@ class MemberCard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    memberList: state.memberListPage.memberList
+    memberList: state.memberListPage.memberList,
+    totalCount: state.memberListPage.totalCount
 });
 
 const mapDispatchToProps = {

@@ -1,12 +1,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    logoDb: []
+    logoDb: [],
+    totalCount: 0
 });
 
 const getSuccess = (state, action) => ({
     ...state,
-    logoDb: action.payload
+    logoDb: action.payload,
+    totalCount: action.totalCount
 });
 
 export default createReducer(defaultState, {

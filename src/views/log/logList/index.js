@@ -15,31 +15,44 @@ const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
     getLog: PropTypes.func,
-    logoDb: PropTypes.array
+    logoDb: PropTypes.array,
+    totalCount: PropTypes.number
 };
 
 class loginLIst extends Component {
     componentDidMount() {
         const { getLog } = this.props;
         getLog({
-            content: '',
-            pageNum: 1,
-            pageSize: 10
+            ...this.tableParams
         });
     }
+    tableParams = {
+        content: '',
+        pageNum: 1,
+        pageSize: 10
+    };
     search = (value) => {
         const { getLog } = this.props;
+        this.tableParams.content = value;
         getLog({
-            pageNum: 1,
-            pageSize: 10,
+            ...this.tableParams,
             content: value
         });
     };
-    onChange = (pageNumber) => {
-        console.log('Page: ', pageNumber);
+    onChange = (pageNum) => {
+        this.tableParams.pageNum = pageNum;
+        this.props.getLog({
+            ...this.tableParams,
+            pageNum
+        });
     };
     onShowSizeChange = (current, pageSize) => {
-        console.log(current, pageSize);
+        this.tableParams.pageSize = pageSize;
+        this.props.getLog({
+            ...this.tableParams,
+            pageNum: current,
+            pageSize
+        });
     };
     render() {
         const columns = [
@@ -64,11 +77,12 @@ class loginLIst extends Component {
                 key: 'createTime'
             }
         ];
+        const { totalCount } = this.props;
         const pagination = {
             defaultCurrent: 1,
             showSizeChanger: true,
             showQuickJumper: true,
-            total: 500,
+            total: totalCount,
             onShowSizeChange: this.onShowSizeChange,
             onChange: this.onChange
         };
@@ -96,7 +110,8 @@ class loginLIst extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    logoDb: state.logList.logoDb
+    logoDb: state.logList.logoDb,
+    totalCount: state.logList.totalCount
 });
 
 const mapDispatchToProps = {

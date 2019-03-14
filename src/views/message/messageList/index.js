@@ -17,30 +17,43 @@ const TabPane = Tabs.TabPane;
 class MessageList extends Component {
     static propTypes = {
         getMsg: PropTypes.func,
-        msgList: PropTypes.array
+        msgList: PropTypes.array,
+        totalCount: PropTypes.number
     };
 
     componentDidMount() {
         const { getMsg } = this.props;
         getMsg({
-            content: '',
-            pageNum: 1,
-            pageSize: 10
+            ...this.tableParams
         });
     }
+    tableParams = {
+        productTitle: '',
+        pageNum: 1,
+        pageSize: 10
+    };
     search = (value) => {
         const { getMsg } = this.props;
+        this.tableParams.productTitle = value;
         getMsg({
-            pageNum: 1,
-            pageSize: 10,
+            ...this.tableParams,
             productTitle: value
         });
     };
-    onChange = (pageNumber) => {
-        console.log('Page: ', pageNumber);
+    onChange = (pageNum) => {
+        this.tableParams.pageNum = pageNum;
+        this.props.getMsg({
+            ...this.tableParams,
+            pageNum
+        });
     };
     onShowSizeChange = (current, pageSize) => {
-        console.log(current, pageSize);
+        this.tableParams.pageSize = pageSize;
+        this.props.getMsg({
+            ...this.tableParams,
+            pageNum: current,
+            pageSize
+        });
     };
     render() {
         const columns = [
@@ -65,11 +78,12 @@ class MessageList extends Component {
                 key: 'content'
             }
         ];
+        const { totalCount } = this.props;
         const pagination = {
             defaultCurrent: 1,
             showSizeChanger: true,
             showQuickJumper: true,
-            total: 500,
+            total: totalCount,
             onShowSizeChange: this.onShowSizeChange,
             onChange: this.onChange
         };
@@ -98,7 +112,8 @@ class MessageList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    msgList: state.message.msgList
+    msgList: state.message.msgList,
+    totalCount: state.message.totalCount
 });
 
 const mapDispatchToProps = {

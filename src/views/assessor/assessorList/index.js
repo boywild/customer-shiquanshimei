@@ -15,7 +15,8 @@ const Search = Input.Search;
 const TabPane = Tabs.TabPane;
 const propTypes = {
     assessorList: PropTypes.array,
-    getAssessorList: PropTypes.func
+    getAssessorList: PropTypes.func,
+    totalCount: PropTypes.number
 };
 
 class AssessorList extends Component {
@@ -23,19 +24,33 @@ class AssessorList extends Component {
         const { getAssessorList } = this.props;
         getAssessorList();
     }
+    tableParams = {
+        userName: '',
+        pageNum: 1,
+        pageSize: 10
+    };
     search = (value) => {
         const { getAssessorList } = this.props;
+        this.tableParams.userName = value;
         getAssessorList({
-            pageNum: 1,
-            pageSize: 10,
+            ...this.tableParams,
             userName: value
         });
     };
-    onChange = (pageNumber) => {
-        console.log('Page: ', pageNumber);
+    onChange = (pageNum) => {
+        this.tableParams.pageNum = pageNum;
+        this.props.getAssessorList({
+            ...this.tableParams,
+            pageNum
+        });
     };
     onShowSizeChange = (current, pageSize) => {
-        console.log(current, pageSize);
+        this.tableParams.pageSize = pageSize;
+        this.props.getAssessorList({
+            ...this.tableParams,
+            pageNum: current,
+            pageSize
+        });
     };
     render() {
         const columns = [
@@ -77,11 +92,12 @@ class AssessorList extends Component {
                 render: (text, record) => (record.checkStatus === '0' ? <a href="javascript:;">审核</a> : '审核')
             }
         ];
+        const { totalCount } = this.props;
         const pagination = {
             defaultCurrent: 1,
             showSizeChanger: true,
             showQuickJumper: true,
-            total: 500,
+            total: totalCount,
             onShowSizeChange: this.onShowSizeChange,
             onChange: this.onChange
         };
@@ -109,7 +125,8 @@ class AssessorList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    assessorList: state.assessorPage.assessorList
+    assessorList: state.assessorPage.assessorList,
+    totalCount: state.assessorPage.totalCount
 });
 
 const mapDispatchToProps = {

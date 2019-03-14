@@ -10,15 +10,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Select, Table } from 'antd';
 import action from './action';
-import './index.scss';
 
 const Option = Select.Option;
-
 
 class MemberList extends Component {
     static propTypes = {
         getMemberCard: PropTypes.func,
-        memberCard: PropTypes.array
+        memberCard: PropTypes.array,
+        totalCount: PropTypes.number
+    };
+    tableParams = {
+        grade: '',
+        pageNum: 1,
+        pageSize: 10
     };
     test = () => {
         let arr = [];
@@ -33,10 +37,25 @@ class MemberList extends Component {
     };
     handleChange = (val) => {
         const { getMemberCard } = this.props;
+        this.tableParams.grade = val;
         getMemberCard({
-            grade: val,
-            pageNum: 1,
-            pageSize: 10
+            ...this.tableParams,
+            grade: val
+        });
+    };
+    onChange = (pageNum) => {
+        this.tableParams.pageNum = pageNum;
+        this.props.getMemberCard({
+            ...this.tableParams,
+            pageNum
+        });
+    };
+    onShowSizeChange = (current, pageSize) => {
+        this.tableParams.pageSize = pageSize;
+        this.props.getMemberCard({
+            ...this.tableParams,
+            pageNum: current,
+            pageSize
         });
     };
     render() {
@@ -54,14 +73,26 @@ class MemberList extends Component {
                 dataIndex: 'address'
             }
         ];
-
+        const { totalCount } = this.props;
+        const pagination = {
+            defaultCurrent: 1,
+            showSizeChanger: true,
+            showQuickJumper: true,
+            total: totalCount,
+            onShowSizeChange: this.onShowSizeChange,
+            onChange: this.onChange
+        };
         return (
             <div>
                 <Card title="会员卡显示" bordered={false} className="member-level">
-                    <Select placeholder="选择会员级别" onChange={this.handleChange}>
+                    <Select style={{width:'400px',marginBottom:'20px'}} placeholder="选择会员级别" onChange={this.handleChange}>
                         {this.test()}
                     </Select>
-                    <Table columns={columns} dataSource={this.props.memberCard} size="middle" />
+                    <Table
+                        columns={columns}
+                        pagination={{ ...pagination }}
+                        dataSource={this.props.memberCard}
+                    />
                 </Card>
             </div>
         );
@@ -69,7 +100,8 @@ class MemberList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    memberCard: state.memberCardPage.memberCard
+    memberCard: state.memberCardPage.memberCard,
+    totalCount: state.memberCardPage.totalCount
 });
 
 const mapDispatchToProps = {

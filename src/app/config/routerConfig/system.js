@@ -23,7 +23,7 @@ const systemRouter = [
     {
         path: '/system/setting1',
         exact: true,
-        permissions: ['admin', 'user'],
+        // permissions: ['admin', 'user'],
         redirect: '/login',
         component: System1,
         pageTitle: 'pageTitle_system_setting1',
@@ -32,7 +32,7 @@ const systemRouter = [
     {
         path: '/system/setting2',
         exact: true,
-        permissions: ['admin', 'user'],
+        // permissions: ['admin', 'user'],
         redirect: '/login',
         component: System2,
         pageTitle: 'pageTitle_system_setting2',
@@ -41,7 +41,7 @@ const systemRouter = [
     {
         path: '/system/promotion',
         exact: true,
-        permissions: ['admin'],
+        // permissions: ['admin'],
         redirect: '/login',
         component: Promotion,
         pageTitle: 'pageTitle_system_promotion',
@@ -50,7 +50,7 @@ const systemRouter = [
     {
         path: '/system/qr',
         exact: true,
-        permissions: ['admin'],
+        // permissions: ['admin'],
         redirect: '/login',
         component: Qr,
         pageTitle: 'pageTitle_system_qr',
@@ -59,7 +59,7 @@ const systemRouter = [
     {
         path: '/system/pageinfo',
         exact: true,
-        permissions: ['admin'],
+        // permissions: ['admin'],
         redirect: '/login',
         component: Pageinfo,
         pageTitle: 'pageTitle_system_pageinfo',
@@ -68,7 +68,7 @@ const systemRouter = [
     {
         path: '/system/share',
         exact: true,
-        permissions: ['admin'],
+        // permissions: ['admin'],
         redirect: '/login',
         component: Share,
         pageTitle: 'pageTitle_system_share',

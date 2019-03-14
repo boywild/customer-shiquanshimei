@@ -1,12 +1,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    memberList: []
+    memberList: [],
+    totalCount: 0
 });
 
 const getMemberSuccess = (state, action) => ({
     ...state,
-    memberList: action.payload
+    memberList: action.payload,
+    totalCount: action.totalCount
 });
 
 export default createReducer(defaultState, {

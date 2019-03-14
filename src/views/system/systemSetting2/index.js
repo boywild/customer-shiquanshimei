@@ -152,7 +152,7 @@ const mapDispatchToProps = {
     saveBasicGroup: action.saveBasicGroup
 };
 
-const System2 = Form.create({ name: 'aa' })(System2Form);
+const System2 = Form.create({ name: 'system2' })(System2Form);
 export default connect(
     mapStateToProps,
     mapDispatchToProps

@@ -8,12 +8,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    memberList: []
+    memberList: [],
+    totalCount: 0
 });
 
 const getMemberCardSuccess = (state, action) => ({
     ...state,
-    memberCard: action.payload
+    memberCard: action.payload,
+    totalCount: action.totalCount
 });
 
 export default createReducer(defaultState, {

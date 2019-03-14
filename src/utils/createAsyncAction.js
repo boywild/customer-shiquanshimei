@@ -20,6 +20,7 @@ function createAsyncAction(name, callback, meta = {}) {
                     const action = {
                         meta,
                         type: `${name}_SUCCESS`,
+                        totalCount: value.totalCount || 0,
                         payload: (() => {
                             let result = null;
                             if (name === 'APP_LOGIN') {
@@ -54,7 +55,7 @@ function createAsyncAction(name, callback, meta = {}) {
                         meta,
                         type: 'APP_LOADING_END'
                     });
-                    message.error(err.resultMsg||'系统错误', 1);
+                    message.error(err.resultMsg || '系统错误', 1);
                     return action;
                 });
         } catch (err) {
@@ -69,7 +70,7 @@ function createAsyncAction(name, callback, meta = {}) {
                 meta,
                 type: 'APP_LOADING_END'
             });
-            message.error(err.resultMsg||'系统错误', 1);
+            message.error(err.resultMsg || '系统错误', 1);
             return Promise.resolve(action);
         }
     };

@@ -2,7 +2,8 @@ import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
     assessorList: [],
-    checkedlist: []
+    checkedlist: [],
+    totalCount: 0
 });
 
 const getAssSuccess = (state, action) => ({
@@ -11,7 +12,8 @@ const getAssSuccess = (state, action) => ({
 });
 const getCheckedSuccess = (state, action) => ({
     ...state,
-    checkedlist: action.payload
+    checkedlist: action.payload,
+    totalCount: action.totalCount
 });
 
 export default createReducer(defaultState, {

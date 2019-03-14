@@ -166,7 +166,7 @@ const mapDispatchToProps = {
     saveSysSetting1: action.saveSysSetting1
 };
 
-const System1 = Form.create({ name: 'System1Form' })(System1Form);
+const System1 = Form.create({ name: 'system1' })(System1Form);
 
 export default connect(
     mapStateToProps,

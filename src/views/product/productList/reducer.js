@@ -8,12 +8,14 @@
 import createReducer from 'utils/createReducer';
 
 const defaultState = () => ({
-    productList: []
+    productList: [],
+    totalCount: 0
 });
 
 const getProSuccess = (state, action) => ({
     ...state,
-    productList: action.payload
+    productList: action.payload,
+    totalCount: action.totalCount
 });
 
 export default createReducer(defaultState, {

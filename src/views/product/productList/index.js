@@ -16,28 +16,42 @@ const TabPane = Tabs.TabPane;
 class MessageList extends Component {
     static propTypes = {
         getProduct: PropTypes.func,
-        productList: PropTypes.array
+        productList: PropTypes.array,
+        totalCount: PropTypes.number
     };
     componentDidMount() {
         const { getProduct } = this.props;
         getProduct({
-            pageNum: 1,
-            pageSize: 10
+            ...this.tableParams
         });
     }
+    tableParams = {
+        productTitle: '',
+        pageNum: 1,
+        pageSize: 10
+    };
     search = (value) => {
         const { getProduct } = this.props;
+        this.tableParams.productTitle = value;
         getProduct({
-            pageNum: 1,
-            pageSize: 10,
+            ...this.tableParams,
             productTitle: value
         });
     };
-    onChange = (pageNumber) => {
-        console.log('Page: ', pageNumber);
+    onChange = (pageNum) => {
+        this.tableParams.pageNum = pageNum;
+        this.props.getProduct({
+            ...this.tableParams,
+            pageNum
+        });
     };
     onShowSizeChange = (current, pageSize) => {
-        console.log(current, pageSize);
+        this.tableParams.pageSize = pageSize;
+        this.props.getProduct({
+            ...this.tableParams,
+            pageNum: current,
+            pageSize
+        });
     };
     render() {
         const columns = [
@@ -62,11 +76,12 @@ class MessageList extends Component {
                 key: 'productPicUrl'
             }
         ];
+        const { totalCount } = this.props;
         const pagination = {
             defaultCurrent: 1,
             showSizeChanger: true,
             showQuickJumper: true,
-            total: 500,
+            total: totalCount,
             onShowSizeChange: this.onShowSizeChange,
             onChange: this.onChange
         };
@@ -94,7 +109,8 @@ class MessageList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    productList: state.productListPage.productList
+    productList: state.productListPage.productList,
+    totalCount: state.productListPage.totalCount
 });
 
 const mapDispatchToProps = {
