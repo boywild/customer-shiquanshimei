@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { message } from 'antd';
 import _ from 'lodash';
 
 // import { buildConfig } from 'app/config/buildConfig';
