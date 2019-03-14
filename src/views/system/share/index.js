@@ -26,7 +26,17 @@ class ShareForm extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.shareOpt !== this.props.shareOpt) {
             const { shareOpt } = nextProps;
-            this.props.form.setFieldsValue({ ...shareOpt });
+            this.props.form.setFieldsValue({
+                ...shareOpt,
+                sharePicUrl: [
+                    {
+                        uid: '-2',
+                        name: 'OOGMXo.png',
+                        status: 'done',
+                        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
+                    }
+                ]
+            });
         }
     }
     handleSubmit = (e) => {
@@ -59,11 +69,15 @@ class ShareForm extends Component {
                 sm: { span: 7 }
             }
         };
+        const uploadProp = {
+            action: httpConfig.imgUrl,
+            listType: 'picture'
+        };
         return (
             <div>
-                <Card title='分享配置' bordered={false}>
+                <Card title="分享配置" bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Item {...formItemLayout} label='分享标题' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="分享标题" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('shareTitle', {
                                 rules: [
                                     {
@@ -73,7 +87,7 @@ class ShareForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='分享描述' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="分享描述" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('shareDec', {
                                 rules: [
                                     {
@@ -83,28 +97,28 @@ class ShareForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='分享图片'>
-                            <div className='dropbox'>
+                        <Form.Item {...formItemLayout} label="分享图片">
+                            <div className="dropbox">
                                 {getFieldDecorator('sharePicUrl', {
                                     valuePropName: 'fileList',
                                     getValueFromEvent: this.normFile
                                 })(
-                                    <Upload.Dragger name='file' action={httpConfig.imgUrl} listType='picture'>
-                                        <p className='ant-upload-drag-icon'>
-                                            <Icon type='inbox' />
+                                    <Upload.Dragger name="file" {...uploadProp}>
+                                        <p className="ant-upload-drag-icon">
+                                            <Icon type="inbox" />
                                         </p>
-                                        <p className='ant-upload-text'>点击或者拖拽上传图片</p>
-                                        <p className='ant-upload-hint'>支持多张上传</p>
+                                        <p className="ant-upload-text">点击或者拖拽上传图片</p>
+                                        <p className="ant-upload-hint">支持多张上传</p>
                                     </Upload.Dragger>
                                 )}
                             </div>
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                            <Button className='mgr10' type='primary' htmlType='submit'>
+                            <Button className="mgr10" type="primary" htmlType="submit">
                                 提交
                             </Button>
-                            <Button className='mgl10'>取消</Button>
+                            <Button className="mgl10">取消</Button>
                         </Form.Item>
                     </Form>
                 </Card>

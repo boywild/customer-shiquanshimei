@@ -14,7 +14,7 @@ import action from './action';
 class PromotionForm extends Component {
     static propTypes = {
         getUpdateSetting: PropTypes.func,
-        updateSetting: PropTypes.func,
+        updateSetting: PropTypes.object,
         saveUpdateSetting: PropTypes.func
     };
 

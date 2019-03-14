@@ -77,27 +77,31 @@ class PageinfoForm extends Component {
                 sm: { span: 7 }
             }
         };
+        const uploadProp = {
+            action: httpConfig.imgUrl,
+            listType: 'picture'
+        };
         return (
             <div>
-                <Card title='分享配置' bordered={false}>
+                <Card title="分享配置" bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Item {...formItemLayout} label='默认banner' extra='输入分享标题，如：xxxxx'>
-                            <div className='dropbox'>
+                        <Form.Item {...formItemLayout} label="默认banner" extra="输入分享标题，如：xxxxx">
+                            <div className="dropbox">
                                 {getFieldDecorator('dragger', {
                                     valuePropName: 'fileList',
                                     getValueFromEvent: this.normFile
                                 })(
-                                    <Upload.Dragger name='file' action={httpConfig.imgUrl} listType='picture'>
-                                        <p className='ant-upload-drag-icon'>
-                                            <Icon type='inbox' />
+                                    <Upload.Dragger name="file" {...uploadProp}>
+                                        <p className="ant-upload-drag-icon">
+                                            <Icon type="inbox" />
                                         </p>
-                                        <p className='ant-upload-text'>点击或者拖拽上传图片</p>
-                                        <p className='ant-upload-hint'>支持多张上传</p>
+                                        <p className="ant-upload-text">点击或者拖拽上传图片</p>
+                                        <p className="ant-upload-hint">支持多张上传</p>
                                     </Upload.Dragger>
                                 )}
                             </div>
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='登录页顶部提示' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="登录页顶部提示" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_1', {
                                 rules: [
                                     {
@@ -107,7 +111,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='注册页顶部提示' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="注册页顶部提示" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_2', {
                                 rules: [
                                     {
@@ -117,7 +121,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='注册页提示语' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="注册页提示语" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_3', {
                                 rules: [
                                     {
@@ -127,7 +131,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='首页顶部提示' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="首页顶部提示" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_4', {
                                 rules: [
                                     {
@@ -137,7 +141,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='审核列表页顶部提示' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="审核列表页顶部提示" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_5', {
                                 rules: [
                                     {
@@ -147,7 +151,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='会员中心页新手提示' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="会员中心页新手提示" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_6', {
                                 rules: [
                                     {
@@ -157,7 +161,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='邀请好友页顶部提示' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="邀请好友页顶部提示" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_7', {
                                 rules: [
                                     {
@@ -167,7 +171,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='升级页顶部提示' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="升级页顶部提示" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_8', {
                                 rules: [
                                     {
@@ -177,7 +181,7 @@ class PageinfoForm extends Component {
                                 ]
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='所有页面底部显示内容' extra='输入分享标题，如：xxxxx'>
+                        <Form.Item {...formItemLayout} label="所有页面底部显示内容" extra="输入分享标题，如：xxxxx">
                             {getFieldDecorator('tips_9', {
                                 rules: [
                                     {
@@ -189,10 +193,10 @@ class PageinfoForm extends Component {
                         </Form.Item>
 
                         <Form.Item wrapperCol={{ span: 7, offset: 5 }}>
-                            <Button className='mgr10' type='primary' htmlType='submit'>
+                            <Button className="mgr10" type="primary" htmlType="submit">
                                 提交
                             </Button>
-                            <Button className='mgl10'>重置</Button>
+                            <Button className="mgl10">重置</Button>
                         </Form.Item>
                     </Form>
                 </Card>
