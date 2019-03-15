@@ -10,8 +10,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Card, Form, Input, Button, Switch, DatePicker } from 'antd';
 import moment from 'moment';
+import OwnerSet from './OwnerSet';
 
 import action from './action';
+import './index.scss';
 const { RangePicker } = DatePicker;
 
 class System2Form extends Component {
@@ -69,9 +71,9 @@ class System2Form extends Component {
         };
         return (
             <div>
-                <Card title='基础设置' bordered={false}>
+                <Card title="基础设置" bordered={false}>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Item {...formItemLayout} label='活动标题'>
+                        <Form.Item {...formItemLayout} label="活动标题">
                             {getFieldDecorator('activityTitle', {
                                 rules: [
                                     {
@@ -79,9 +81,9 @@ class System2Form extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input placeholder='请输入活动标题' />)}
+                            })(<Input placeholder="请输入活动标题" />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='活动时间'>
+                        <Form.Item {...formItemLayout} label="活动时间">
                             {getFieldDecorator('rangtime', {
                                 rules: [
                                     {
@@ -89,12 +91,12 @@ class System2Form extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<RangePicker format='YYYY-MM-DD' />)}
+                            })(<RangePicker format="YYYY-MM-DD" />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='只能在微信'>
+                        <Form.Item {...formItemLayout} label="只能在微信">
                             {getFieldDecorator('isWechat', { valuePropName: 'checked' })(<Switch />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='最多可邀请好友'>
+                        <Form.Item {...formItemLayout} label="最多可邀请好友">
                             {getFieldDecorator('inviteMax', {
                                 rules: [
                                     {
@@ -102,12 +104,12 @@ class System2Form extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input placeholder='请输入最多可邀请好友数量' />)}
+                            })(<Input placeholder="请输入最多可邀请好友数量" />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='启动互助模式'>
+                        <Form.Item {...formItemLayout} label="启动互助模式">
                             {getFieldDecorator('isCooperation', { valuePropName: 'checked' })(<Switch />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='1级升2级邀请数'>
+                        <Form.Item {...formItemLayout} label="1级升2级邀请数">
                             {getFieldDecorator('upgradeInviteNum', {
                                 rules: [
                                     {
@@ -115,9 +117,9 @@ class System2Form extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input placeholder='请输入邀请数' />)}
+                            })(<Input placeholder="请输入邀请数" />)}
                         </Form.Item>
-                        <Form.Item {...formItemLayout} label='级数设置'>
+                        <Form.Item {...formItemLayout} label="级数设置">
                             {getFieldDecorator('levelNum', {
                                 rules: [
                                     {
@@ -125,13 +127,23 @@ class System2Form extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input placeholder='请输入级数设置' />)}
+                            })(<Input placeholder="请输入级数设置" />)}
+                        </Form.Item>
+                        <Form.Item {...formItemLayout} wrapperCol={{ sm: { span: 19 } }} label="默认群主">
+                            {getFieldDecorator('qunzhu', {
+                                rules: [
+                                    {
+                                        required: true,
+                                        message: '不能为空'
+                                    }
+                                ]
+                            })(<OwnerSet />)}
                         </Form.Item>
                         <Form.Item wrapperCol={{ span: 7, offset: 3 }}>
-                            <Button className='mgr10' type='primary' htmlType='submit'>
+                            <Button className="mgr10" type="primary" htmlType="submit">
                                 提交
                             </Button>
-                            <Button className='mgl10'>取消</Button>
+                            <Button className="mgl10">取消</Button>
                         </Form.Item>
                     </Form>
                 </Card>
