@@ -27,7 +27,9 @@ function createAsyncAction(name, callback, meta = {}) {
                                 const data = value.admin ? value.admin : value.user;
                                 result = {
                                     ...data,
-                                    authorities: value.admin ? 'admin' : 'user'
+                                    authorities: value.admin ? 'admin' : 'user',
+                                    id: data.adminId,
+                                    name: data.adminName
                                 };
                             } else {
                                 result = value.data;

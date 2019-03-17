@@ -41,7 +41,7 @@ class UserinfoForm extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input />)}
+                            })(<Input disabled />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label='我的微信'>
                             {getFieldDecorator('wxId', {
@@ -51,7 +51,7 @@ class UserinfoForm extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input />)}
+                            })(<Input disabled />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label='我的手机'>
                             {getFieldDecorator('telephone', {
@@ -61,7 +61,7 @@ class UserinfoForm extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input />)}
+                            })(<Input disabled />)}
                         </Form.Item>
                         <Form.Item {...formItemLayout} label='我的级别'>
                             {getFieldDecorator('level', {
@@ -71,7 +71,7 @@ class UserinfoForm extends Component {
                                         message: '不能为空'
                                     }
                                 ]
-                            })(<Input />)}
+                            })(<Input disabled />)}
                         </Form.Item>
                     </Form>
                 </Card>

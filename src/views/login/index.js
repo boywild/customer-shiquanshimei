@@ -31,7 +31,7 @@ class Login extends Component {
     componentDidMount() {
         const { isLogin, history } = this.props;
         if (isLogin) {
-            history.push('/');
+            history.push('/system/setting1');
         }
     }
 
